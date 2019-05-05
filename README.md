@@ -1,5 +1,5 @@
 # MERN +GRaphQL+Redux
-![MERN](./theDocs/images/mern_q_r.png)
+![MERN](./theDocs/images/theDocs/images/mern-q-l.png)
 
 - [mongoDB](https://docs.mongodb.com/manual/core/schema-validation/)
 - [mongoose.js](https://mongoosejs.com/)

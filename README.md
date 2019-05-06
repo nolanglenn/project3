@@ -13,3 +13,16 @@
 ## testing
 ```npm run dev```
 
+## Develoment Purposes Only! - Delete before final application production
+
+```npm init```
+
+I have not deleted the config folder with the keys. But you can use my key if you want for development or I can add you to the cluster. 
+
+We just need to make sure that we change it when we are deploying it so that it will run on heroku.
+
+Everything should run once you have done the init. 
+
+There is still a problem with the navbar showing up on the login page but I am going to try a couple of solutions. I think the biggest one is just organzing the way the front is layered a little more. 
+
+Anyways the routing should still work so for development purposes we should be okay. 

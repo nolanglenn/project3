@@ -22,7 +22,7 @@ return (
               <li><Link to="/page1">Page 1</Link></li>
               <li><Link to="/page2">Page 2</Link></li>
               <li><Link to="/page3">Page 3</Link></li>
-              <li><Link to="/profile">Your Profile</Link></li>
+              <li><Link to="/profile">Profile</Link></li>
               <li><a onClick={this.onLogoutClick} href="mobile.html">Logout</a></li>
             </ul>
           </div>

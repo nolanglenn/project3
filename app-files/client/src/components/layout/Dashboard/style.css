@@ -1,0 +1,48 @@
+#header {
+    padding: 50px 0 0 0;
+    font-size: 95px;
+}
+
+#subheader {
+    font-size: 25px;
+}
+
+#dashboardbutton {
+    width: 200px;
+    margin: 18px 20px 0 20px;
+}
+
+#largescreeninfo {
+    visibility: visible;
+}
+
+#smallscreeninfo {
+    visibility: collapse;
+}
+
+@media only screen and (max-width: 960px) {
+    #largescreeninfo {
+        visibility: collapse;
+        height: 0px;
+    }
+    #smallscreeninfo {
+        visibility: visible;
+    }
+    #header {
+        font-size: 50px;
+        padding: 20px 0 0 0;
+    }
+    #subheader {
+        font-size: 18px;
+    }
+
+    .smallscreentxt {
+        font-size: 40px;
+    }
+}
+
+@media only screen and (min-width: 960px) {
+    #smallscreeninfo {
+        height: 0px;
+    }
+}

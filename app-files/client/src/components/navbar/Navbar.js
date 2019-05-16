@@ -27,7 +27,7 @@ return (
             <Link to="/dashboard" className="brand-logo" style={{ margin: "0 0 0 10px" }}>Open<b>House</b></Link>
             <a href="#!" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
             <ul className="right hide-on-med-and-down">
-              <li><Link to="/page1">Available Jobs</Link></li>
+              <li><Link to="/page1">Page 1</Link></li>
               <li><Link to="/page2">Page 2</Link></li>
               <li><Link to="/page3">Page 3</Link></li>
               <li><Link to="/profile">Profile</Link></li>
@@ -37,7 +37,7 @@ return (
         </nav>
 
         <ul className="sidenav" id="mobile-demo">
-            <li><Link to="/page1">Availabe Jobs</Link></li>
+            <li><Link to="/page1">Page 1</Link></li>
             <li><Link to="/page2">Page 2</Link></li>
             <li><Link to="/page3">Page 3</Link></li>
             <li><Link to="/profile">Profile</Link></li>

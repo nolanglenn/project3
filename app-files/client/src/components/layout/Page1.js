@@ -16,7 +16,7 @@ class Page1 extends Component {
         <div className="row">
           <div className="col s12 center-align">
             <h1>
-              <b>Available Jobs</b>
+              <b>Page 1</b>
             </h1>
           </div>
         </div>

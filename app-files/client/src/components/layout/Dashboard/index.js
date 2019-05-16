@@ -33,7 +33,7 @@ class Dashboard extends Component {
           </div>
           <div className="col s12 center-align">
             <h4 id='subheader'>
-              <Link id='dashboardbutton' className='waves-effect waves-light btn-large deep-purple darken-2'>Grab a Job</Link>
+              <Link id='dashboardbutton' to='/page1' className='waves-effect waves-light btn-large deep-purple darken-2'>Grab a Job</Link>
               <Link id='dashboardbutton' className='waves-effect waves-light btn-large deep-purple darken-2'>Post a Job</Link>
             </h4>
           </div>

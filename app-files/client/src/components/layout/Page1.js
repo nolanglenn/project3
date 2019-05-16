@@ -33,7 +33,6 @@ class Page1 extends Component {
                     </div>
                     <div className="input-field col s6">
                     <select>
-                      <option value="" disabled selected>Choose the job type</option>
                       <option value="1">Open house</option>
                       <option value="2">Showing</option>
                       <option value="3">Title work</option>
@@ -59,6 +58,9 @@ class Page1 extends Component {
                       <label for="notes">Notes</label>
                     </div>
                   </div>
+                  <button class="btn waves-effect waves-light deep-purple accent-3" type="submit" name="action">Post Job
+                    <i class="material-icons right">send</i>
+                  </button>       
                 </form>
               </div>
           </div>

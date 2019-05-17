@@ -26,7 +26,8 @@ const db = require("./config/keys").mongoURI;
 
 // Connect to MongoDB
 mongoose.connect(
-  process.env.MONGODB_URI || `mongodb://localhost/LocalOpenHouse`
+  process.env.MONGODB_URI || `mongodb://localhost/LocalOpenHouse`, 
+  { useNewUrlParser: true}
  );
 
 // Passport middleware

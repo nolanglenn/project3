@@ -14,7 +14,7 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  createdEvents: [
+  createdJobs: [
     {
       type: Schema.Types.ObjectId,
       ref: 'Job'

@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-// Create Schema
-const UserSchema = new Schema({
+
+const userSchema = new Schema({
   name: {
     type: String,
     required: true
@@ -14,9 +14,12 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  date: {
-    type: Date,
-    default: Date.now
-  }
+  createdEvents: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Job'
+    }
+  ]
 });
-module.exports = User = mongoose.model("users", UserSchema);
+
+module.exports = mongoose.model('User', userSchema);

@@ -1,10 +1,10 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
+const express = require('express');
+const bodyParser = require('body-parser');
+const passport = require('passport');
+const mongoose = require('mongoose');
 const app = express();
-const passport = require("passport");
+const users = require('./routes/api/users');
 
-const users = require("./routes/api/users");
 // Bodyparser middleware
 app.use(
   bodyParser.urlencoded({
@@ -14,28 +14,24 @@ app.use(
 app.use(bodyParser.json());
 
 // DB Config
-const db = require("./config/keys").mongoURI;
-// Connect to MongoDB
-// mongoose
-//   .connect(
-//     db,
-//     { useNewUrlParser: true }
-//   )
-//   .then(() => console.log("MongoDB successfully connected"))
-//   .catch(err => console.log(err));
 
-// Connect to MongoDB
-mongoose.connect(
-  process.env.MONGODB_URI || `mongodb://localhost/LocalOpenHouse`, 
-  { useNewUrlParser: true}
- );
+const db = require('./config/keys').mongoURI;
+const port = process.env.PORT || 5000; // process.env.port is Heroku's port if you choose to deploy the app there
+mongoose
+  .connect(process.env.MONGODB_URI || 'mongodb://localhost/LocalOpenHouse')
+  .then(() => {
+    console.log('MongoDB successfully connected');
+    app.listen(port, () =>
+      console.log(`The server is up and running on port ${port} !`)
+    );
+  })
+  .catch(err => {
+    console.log(err);
+  });
 
 // Passport middleware
 app.use(passport.initialize());
 // Passport config
-require("./config/passport")(passport);
+require('./config/passport')(passport);
 // Routes
-app.use("/api/users", users);
-
-const port = process.env.PORT || 5000; // process.env.port is Heroku's port if you choose to deploy the app there
-app.listen(port, () => console.log(`The server is up and running on port ${port} !`));
+app.use('/api/users', users);

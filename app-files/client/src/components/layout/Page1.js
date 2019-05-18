@@ -16,7 +16,7 @@ class Page1 extends Component {
         <div className="row">
           <div className="col s12 center-align">
             <h1>
-              <b>Post a job</b>
+              <b>Post a Job</b>
             </h1>
               <div className="row">
                 <form className="col s12">
@@ -28,14 +28,14 @@ class Page1 extends Component {
                   </div>
                   <div className="row">
                     <div className="input-field col s6">
-                      <input placeholder="0.00" id="compensation" type="text" className="validate"></input>
+                      <input placeholder="" id="compensation" type="number" min='0' className="validate"></input>
                       <label for="compensation">Compensation</label>
                     </div>
                     <div className="input-field col s6">
                     <select>
                       <option value="1">Open house</option>
                       <option value="2">Showing</option>
-                      <option value="3">Title work</option>
+                      <option value="3">Title Work</option>
                     </select>
                     <label>Job Type</label>
                   </div>
@@ -54,7 +54,7 @@ class Page1 extends Component {
                   </div>
                   <div className="row">
                     <div className="input-field col s12">
-                      <input id="notes" type="text" className="validate"></input>
+                      <textarea id="notes" type="text" className="materialize-textarea" data-length='250'></textarea>
                       <label for="notes">Notes</label>
                     </div>
                   </div>

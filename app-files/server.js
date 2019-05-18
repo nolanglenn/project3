@@ -14,6 +14,7 @@ app.use(
 app.use(bodyParser.json());
 
 // DB Config
+
 const db = require('./config/keys').mongoURI;
 const port = process.env.PORT || 5000; // process.env.port is Heroku's port if you choose to deploy the app there
 mongoose
@@ -27,6 +28,7 @@ mongoose
   .catch(err => {
     console.log(err);
   });
+
 // Passport middleware
 app.use(passport.initialize());
 // Passport config

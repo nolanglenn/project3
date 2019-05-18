@@ -5,10 +5,35 @@ import { logoutUser } from "../../actions/authActions";
 //import { Link } from "react-router-dom";
 import Navbar from '../navbar/Navbar';
 import Avatar from 'react-avatar';
-import ImageLink from './Modals/imageLink';
 
 class Profile extends Component {
 
+  state={
+    show: false,
+    imageURL: '',
+    previousImage: '',
+  }
+
+  handleChange(e) {
+    this.setState({imageURL: e.target.value})
+  }
+
+  showModal = e => {
+    this.setState({show: !this.state.show});
+  };
+
+  onClose = e => {
+    this.props.onClose && this.props.onClose(e);
+  };
+
+  setPrevious = e => {
+    this.setState({previousImage: this.state.imageURL})
+  }
+
+  onCancel = e => {
+    this.setState({imageURL: this.state.previousImage});
+    this.setState({previousImage: ''});
+  }
   render() {
     const { user } = this.props.auth;
   
@@ -28,9 +53,9 @@ class Profile extends Component {
             <div style={{textAlign: 'center', position: 'relative'}} className="card-panel white">
 
 
-            <button style={{position: 'absolute', top: '-15px', right: '-15px'}} className="btn-floating btn-medium deep-purple"><i class="material-icons">image</i></button>
+            <button onClick={(e) => this.setPrevious(e)}style={{position: 'absolute', top: '-15px', right: '-15px'}} className="btn-floating btn-medium deep-purple modal-trigger" href="#modal1"><i class="material-icons">image</i></button>
               <span className="white-text">
-                <Avatar style={{margin: '12.75px', display: 'inline-flex', verticalAlign: 'middle'}} src='' size={150} name={user.name} round={true}/>
+                <Avatar style={{margin: '12.75px', display: 'inline-flex', verticalAlign: 'middle'}} src={this.state.imageURL} size={150} name={user.name} round={true}/>
               </span>
             </div>
           </div>
@@ -61,6 +86,27 @@ class Profile extends Component {
           </div>
         </div>
       </div>
+        <div id="modal1" class="modal">
+          <div class="modal-content">
+            <h4><b>Update Profile Photo</b></h4>
+            <br></br><br></br>
+            <div className='row'>
+            <div className='col s4'>
+              <Avatar style={{margin: '12.75px', display: 'inline-flex', verticalAlign: 'middle'}} src={this.state.imageURL} size={150} name={user.name} round={true}/>
+            </div>
+            <div class="input-field col s8">
+              <i class="material-icons prefix">image</i>
+              <textarea onChange={this.handleChange.bind(this)} type='text' name='photolink' value={this.state.imageURL} id="icon_prefix2" class="materialize-textarea"></textarea>
+              <label for="icon_prefix2">Image URL</label>
+              <span class="helper-text" data-error="wrong" data-success="right">Example: </span>
+            </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a onClick={(e) => this.onCancel(e)} style={{margin: '0 5px 0 0'}} href="#!" class="modal-close btn-flat red white-text">Cancel</a>
+            <a href="#!" onClick={(e) => this.onSubmit} class="modal-close btn-flat green white-text">Update Photo Link</a>
+          </div>
+        </div>
     </div>
     );
   }

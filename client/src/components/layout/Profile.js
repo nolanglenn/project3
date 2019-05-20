@@ -5,6 +5,8 @@ import { logoutUser } from "../../actions/authActions";
 //import { Link } from "react-router-dom";
 import Navbar from '../navbar/Navbar';
 import Avatar from 'react-avatar';
+import { List } from "../List"
+import { ListItem } from "../List";
 
 class Profile extends Component {
 
@@ -74,6 +76,21 @@ class Profile extends Component {
             <div className="card-panel white">
               <span className="black-text">
                   <h5><b>Posted Jobs</b></h5>
+                  <List>
+                  {/* {this.state.post.map(post => (
+                    <ListItem key={user.id}>
+                      <div className="row">
+                        <div className="col-6 col-md-4">
+                          <a href={post.id} target="_blank">
+                            <strong>
+                              {post.title}
+                            </strong>
+                          </a>
+                          <button>Detail</button>
+                        </div>
+                      </div>
+                    </ListItem>))} */}
+                  </List>
               </span>
             </div>
           </div>
@@ -81,6 +98,21 @@ class Profile extends Component {
             <div className="card-panel white">
               <span className="black-text">
                   <h5><b>Jobs You've Taken</b></h5>
+                  <List>
+                  {/* {this.state.job.map(job => (
+                    <ListItem key={user.id}>
+                      <div className="row">
+                        <div className="col-6 col-md-4">
+                          <a href={job.id} target="_blank">
+                            <strong>
+                              {job.title}
+                            </strong>
+                          </a>
+                          <button>Detail</button>
+                        </div>
+                      </div>
+                    </ListItem>))} */}
+                  </List>
               </span>
             </div>
           </div>

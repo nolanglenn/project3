@@ -6,6 +6,15 @@ import { logoutUser } from "../../actions/authActions";
 import Navbar from '../navbar/Navbar';
 
 class Page1 extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      jobTitle: '',
+      compensation: ''
+    }
+  }
+
   render() {
     const { user } = this.props.auth;
     
@@ -22,13 +31,13 @@ class Page1 extends Component {
                 <form className="col s12">
                   <div className="row">
                     <div className="input-field col s12">
-                      <input placeholder="" id="job-title" type="text" className="validate"></input>
+                      <input name='jobTitle' placeholder="" id="job-title" type="text" className="validate"></input>
                       <label for="job-title">What do you need help with?</label>
                     </div>
                   </div>
                   <div className="row">
                     <div className="input-field col s6">
-                      <input placeholder="" id="compensation" type="number" min='0' className="validate"></input>
+                      <input name='compensation' placeholder="" id="compensation" type="number" min='0' className="validate"></input>
                       <label for="compensation">Compensation</label>
                     </div>
                     <div className="input-field col s6">

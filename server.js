@@ -22,7 +22,8 @@ app.use(express.static(path.join(__dirname, "client", "build")))
 const db = require('./config/keys').mongoURI;
 const port = process.env.PORT || 5000; // process.env.port is Heroku's port if you choose to deploy the app there
 mongoose
-  .connect(process.env.MONGODB_URI || 'mongodb://localhost/LocalOpenHouse')
+  .connect(process.env.MONGODB_URI || 'mongodb://localhost/LocalOpenHouse', 
+  {useNewUrlParser: true})
   .then(() => {
     console.log('MongoDB successfully connected');
     /// Heroku Testing ///

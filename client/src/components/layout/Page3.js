@@ -24,7 +24,6 @@ class Page3 extends Component {
             </div>
           </div>
 
-
           <div className="row">
             <div className="col s12 center-align">
               <h4>
@@ -47,38 +46,32 @@ class Page3 extends Component {
           <hr style={{ width: '80%' }}></hr>
           <br></br>
 
-          <div className="row contentSections" >
-            <div>
+          <br></br>
+
+          <div className='row'>
+            <div className='col s12 m6'>
               <h5 >Notes:</h5>
               <h6>ALL NOTES TO DISPLAY HERE</h6>
             </div>
-            <div >
-              <div>MAP COULD GO OVER TO THE RIGHT SIDE ---> </div>
+            <div className="col s12 m6 contentSections">
+
+              <h5 >Map:</h5>
+              <h6>OR GOOGLE MAPS TO DISPLAY HERE</h6>
+
             </div>
           </div>
+          
+          <div className='row'>
+            <div className="col s12 m6 contentSections">
 
-          <br></br>
+              <h5 >Comments:</h5>
+              <h6>ALL COMMENTS TO DISPLAY HERE</h6>
 
-          <div className="row contentSections">
-
-            <h5 >Comments:</h5>
-            <h6>ALL COMMENTS TO DISPLAY HERE</h6>
-
-          </div>
-
-          <br></br>
-
-          <div className="row contentSections">
-
-            <h5 >Map:</h5>
-            <h6>OR GOOGLE MAPS TO DISPLAY HERE</h6>
-
+            </div>
           </div>
         </div>
 
       </div>
-
-
 
     );
   }

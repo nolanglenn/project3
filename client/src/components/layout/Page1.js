@@ -12,13 +12,14 @@ class Page1 extends Component {
     this.state = {
       errors:'',
       newPost:{
-      originUser: this.props.auth.user.id,
-      jobTitle: '',
-      compensation: '',
-      jobType: '',
-      address: '',
-      date: '',
-      notes:'',
+        originUser: this.props.auth.user.id,
+        jobTitle: '',
+        compensation: '',
+        jobType: '',
+        address: '',
+        geocodeAddress: '',
+        date: '',
+        notes:''
       }
     };
     this.handleInputChange = this.handleInputChange.bind(this);

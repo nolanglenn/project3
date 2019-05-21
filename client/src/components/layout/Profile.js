@@ -9,6 +9,8 @@ import { List } from "../List"
 import { ListItem } from "../List";
 
 class Profile extends Component {
+
+/* need to be sure and update constructor to take in database info. ex: title: {database.value ? database.value : ''} */
   
   constructor () {
     super();
@@ -34,25 +36,11 @@ class Profile extends Component {
     this.props.onClose && this.props.onClose(e);
   };
 
-  /* Image Link Input Change and Functionality */
+  /* Image Link Input Change */
   
   handleChange(e) {
     this.setState(
       {imageURL: e.target.value})
-  }
-
-  setPrevious = e => {
-    this.setState({previousImage: this.state.imageURL})
-  }
-
-  onCancel = e => {
-    this.setState({imageURL: this.state.previousImage});
-    this.setState({previousImage: ''});
-  }
-
-  onSubmit = e => {
-    e.preventDefault();
-    /* Here is where the information would be sent to the database */
   }
 
   /* User Information Change */
@@ -61,10 +49,37 @@ class Profile extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  sumbitFormHandler = e => {
-    e.preventDefault();
-    /* here is where info sent to database */
+  /* Setting previous state in case of user cancel */
+
+  setPrevious = e => {
+    this.setState({previousImage: this.state.imageURL});
+    this.setState({previousEmail: this.state.email});
+    this.setState({previousTitle: this.state.title});
   }
+
+  onCancel = e => {
+    this.setState({imageURL: this.state.previousImage});
+    this.setState({previousImage: ''});
+    this.setState({email: this.state.previousEmail});
+    this.setState({previousEmail: ''});
+    this.setState({title: this.state.previousTitle});
+    this.setState({previousTitle: ''});
+  }
+
+  /* submission functon here is where it will go to the database */
+
+  onSubmit = e => {
+    console.log('hello')
+    e.preventDefault();
+    /* Here is where the information would be sent to the database */
+    const userInfo = {
+      imageURL: this.state.imageURL,
+      email: this.state.email,
+      title: this.state.title
+    }
+    console.log(userInfo);
+  }
+
 
   /* Rendered Component */
 
@@ -95,7 +110,7 @@ class Profile extends Component {
           </div>
           <div className='col m12 s12 l8'>
             <div style={{position: 'relative'}} className="card-panel white">
-            <button style={{position: 'absolute', top: '-15px', right: '-15px'}} className="btn-floating btn-medium deep-purple modal-trigger" href="#modal2"><i className="material-icons">edit</i></button>
+            <button onClick={(e) => this.setPrevious(e)} style={{position: 'absolute', top: '-15px', right: '-15px'}} className="btn-floating btn-medium deep-purple modal-trigger" href="#modal2"><i className="material-icons">edit</i></button>
               <span className="black-text">
                   <h5><b>User Information</b></h5>
                   <h5>{user.name}</h5>
@@ -170,7 +185,7 @@ class Profile extends Component {
           </div>
           <div className="modal-footer">
             <a onClick={(e) => this.onCancel(e)} style={{margin: '0 18px 0 0'}} href="#!" className="modal-close btn-flat red white-text">Cancel</a>
-            <a style={{margin: '0 12px 0 0'}} href="#!" onClick={(e) => this.onSubmit} className="modal-close btn-flat green white-text">Update Photo Link</a>
+            <a style={{margin: '0 12px 0 0'}} href="#!" onClick={this.onSubmit} className="modal-close btn-flat green white-text">Update Photo Link</a>
           </div>
         </div>
         
@@ -189,8 +204,8 @@ class Profile extends Component {
             </div>
           </form>
           <div className="modal-footer">
-            <a style={{margin: '0 18px 0 0'}} href="#!" className="modal-close btn-flat red white-text">Cancel</a>
-            <a style={{margin: '0 12px 0 0'}} href="#!" onClick={(e) => this.sumbitFormHandler} className="modal-close btn-flat green white-text">Update User Information</a>
+            <a onClick={(e) => this.onCancel(e)} style={{margin: '0 18px 0 0'}} href="#!" className="modal-close btn-flat red white-text">Cancel</a>
+            <a style={{margin: '0 12px 0 0'}} href="#!" onClick={this.onSubmit} className="modal-close btn-flat green white-text">Update User Information</a>
           </div>
         </div>
 

@@ -19,7 +19,7 @@ class Page1 extends Component {
         address: '',
         geocodeAddress: '',
         date: '',
-        notes:'',
+        notes:''
       }
     };
     this.handleInputChange = this.handleInputChange.bind(this);

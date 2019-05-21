@@ -13,6 +13,7 @@ class Page3 extends Component {
     return (
       <div>
         <Navbar />
+      
         <div className="container" style={{ width: '80%', margin: '1rem auto' }}>
 
           <div className="row" >
@@ -74,9 +75,11 @@ class Page3 extends Component {
             <h6>OR GOOGLE MAPS TO DISPLAY HERE</h6>
 
           </div>
+
+          <button></button>
         </div>
 
-      </div>
+      </div> 
 
 
 

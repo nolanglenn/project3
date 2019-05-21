@@ -22,14 +22,14 @@ render() {
 return (
       <div>
       <div>
-        <nav className='z-depth-0'>
+        <nav className='z-depth-3'>
           <div className="nav-wrapper deep-purple darken-2">
-            <Link to="/dashboard" className="brand-logo" style={{ margin: "0 0 0 10px" }}>Open<b>House</b></Link>
+            <Link to="/dashboard" className="brand-logo" style={{ margin: "0 10px 0 10px" }}>Task<b>Trader</b></Link>
             <a href="#!" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
             <ul className="right hide-on-med-and-down">
               <li><Link to="/page1">Post a Job</Link></li>
-              <li><Link to="/page2">Page 2</Link></li>
-              <li><Link to="/page3">Page 3</Link></li>
+              <li><Link to="/page2">Find a Job 2</Link></li>
+              <li><Link to="/page3">Temp Job Details 3</Link></li>
               <li><Link to="/profile">Profile</Link></li>
               <li><a onClick={this.onLogoutClick} href="mobile.html"><button className="waves-effect grey lighten-4 btn"><b className='deep-purple-text'>Logout</b></button></a></li>
             </ul>
@@ -37,9 +37,9 @@ return (
         </nav>
 
         <ul className="sidenav" id="mobile-demo">
-            <li><Link to="/page1">Page 1</Link></li>
-            <li><Link to="/page2">Page 2</Link></li>
-            <li><Link to="/page3">Page 3</Link></li>
+            <li><Link to="/page1">Post a Job</Link></li>
+            <li><Link to="/page2">Find a Job 2</Link></li>
+            <li><Link to="/page3">Temp Job Details 3</Link></li>
             <li><Link to="/profile">Profile</Link></li>
             <li><a style={{backgroundColor: '#4a148c'}} onClick={this.onLogoutClick} href="mobile.html"><b className='white-text'><i style={{display: 'inline-flex', verticalAlign: 'middle'}} className="small material-icons">exit_to_app</i> Logout</b></a></li>
         </ul>

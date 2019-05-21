@@ -4,6 +4,8 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const app = express();
 const users = require('./routes/api/users');
+const path = require('path');
+require('dotenv').config(); // For Heroku deployment
 
 // Bodyparser middleware
 app.use(
@@ -12,6 +14,8 @@ app.use(
   })
 );
 app.use(bodyParser.json());
+/// Testing Heroku ///
+app.use(express.static(path.join(__dirname, "client", "build")))
 
 // DB Config
 
@@ -22,6 +26,10 @@ mongoose
   {useNewUrlParser: true})
   .then(() => {
     console.log('MongoDB successfully connected');
+    /// Heroku Testing ///
+    app.get("*", (req, res) => {
+      res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+    });
     app.listen(port, () =>
       console.log(`The server is up and running on port ${port} !`)
     );

@@ -13,6 +13,7 @@ class Page3 extends Component {
     return (
       <div>
         <Navbar />
+      
         <div className="container" style={{ width: '80%', margin: '1rem auto' }}>
 
           <div className="row" >
@@ -69,9 +70,11 @@ class Page3 extends Component {
 
             </div>
           </div>
+
+          <button></button>
         </div>
 
-      </div>
+      </div> 
 
     );
   }

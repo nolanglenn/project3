@@ -6,7 +6,9 @@ const app = express();
 const users = require('./routes/api/users');
 const path = require('path');
 require('dotenv').config(); // For Heroku deployment
-
+const graphqlHttp = require('express-graphql');
+const graphQlSchema = require('./graphql/schema/index');
+const graphQlResolvers = require('./graphql/resolvers/index');
 // Bodyparser middleware
 app.use(
   bodyParser.urlencoded({
@@ -15,20 +17,21 @@ app.use(
 );
 app.use(bodyParser.json());
 /// Testing Heroku ///
-app.use(express.static(path.join(__dirname, "client", "build")))
+app.use(express.static(path.join(__dirname, 'client', 'build')));
 
 // DB Config
 
 const db = require('./config/keys').mongoURI;
 const port = process.env.PORT || 5000; // process.env.port is Heroku's port if you choose to deploy the app there
 mongoose
-  .connect(process.env.MONGODB_URI || 'mongodb://localhost/LocalOpenHouse', 
-  {useNewUrlParser: true})
+  .connect(process.env.MONGODB_URI || 'mongodb://localhost/LocalOpenHouse', {
+    useNewUrlParser: true
+  })
   .then(() => {
     console.log('MongoDB successfully connected');
     /// Heroku Testing ///
-    app.get("*", (req, res) => {
-      res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
     });
     app.listen(port, () =>
       console.log(`The server is up and running on port ${port} !`)
@@ -44,3 +47,11 @@ app.use(passport.initialize());
 require('./config/passport')(passport);
 // Routes
 app.use('/api/users', users);
+app.use(
+  '/graphql',
+  graphqlHttp({
+    schema: graphQlSchema,
+    rootValue: graphQlResolvers,
+    graphiql: true
+  })
+);

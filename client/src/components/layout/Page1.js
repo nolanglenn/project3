@@ -4,27 +4,43 @@ import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 //import { Link } from "react-router-dom";
 import Navbar from '../navbar/Navbar';
+import Geocode from "react-geocode";
+
+
+
 
 class Page1 extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      errors:'',
-      newPost:{
+      errors: '',
+      newPost: {
         originUser: this.props.auth.user.id,
         jobTitle: '',
         compensation: '',
         jobType: '',
         address: '',
-        geocodeAddress: '',
+        geocodeLat: '',
+        geocodeLng: '',
         date: '',
-        notes:''
+        notes: ''
       }
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  // geocodeAddress = () => {
+  //   var geocoder = require('geocoder');
+
+  //   // Geocoding
+  //   geocoder.geocode(this.state.newPost.address, function ( err, data ) {
+  //       // do something with data
+  //       console.log(data);
+  //   });
+
+  // }
 
   handleInputChange = (e) => {
     const target = e.target;
@@ -33,44 +49,71 @@ class Page1 extends Component {
 
     console.log(`Input name ${name}. Input value ${value}`)
 
-    this.setState({newPost: {...this.state.newPost, [name]: value}});
+    this.setState({ newPost: { ...this.state.newPost, [name]: value } });
+
+
+
+
   }
 
-  handleSubmit =(e) => {
+  handleSubmit = (e) => {
     e.preventDefault();
+    if (this.state.newPost.jobTitle === '' || this.state.newPost.compensation === '' || this.state.newPost.jobType === '' ||
+    this.state.newPost.address === '' || this.state.newPost.date === '') {
+    this.setState({ errors: 'One or more required input fields are not filled out. Please ammend your job posting.' })
+    return false
+  }
+  else if (this.state.newPost.jobType === 'Other' && this.state.newPost.notes === '') {
+    this.setState({ errors: 'You have selected OTHER in the job type field. Please add some notes so a user can understand the job type.' })
+    return false
+  }
+  
 
-    if (this.state.newPost.jobTitle === '' || this.state.newPost.compensation === '' || this.state.newPost.jobType === '' || 
-      this.state.newPost.address === '' || this.state.newPost.date === '') {
-        this.setState({errors: 'One or more required input fields are not filled out. Please ammend your job posting.'})
-        return false
+    Geocode.setApiKey("AIzaSyAfJNJ2bbBofLbgi4T55vXkNGLSA7LsPlM");
+
+    // Enable or disable logs. Its optional.
+    Geocode.enableDebug();
+    //  console.log(this.props.newPost.address);
+    Geocode.fromAddress(this.state.newPost.address).then(
+      response => {
+        const { lat, lng } = response.results[0].geometry.location;
+
+        // geocode.push(lat, lng);
+        console.log(lat);
+        this.setState({ newPost: { ...this.state.newPost, geocodeLat: lat, geocodeLng: lng } });
+
+        const post = this.state.newPost; 
+        console.log(post);
+      },
+      error => {
+        console.error(error);
       }
-    else if (this.state.newPost.jobType === 'Other' && this.state.newPost.notes === '') {
-      this.setState({errors: 'You have selected OTHER in the job type field. Please add some notes so a user can understand the job type.'})
-      return false
-    }
-    
-    const post = this.state.newPost;
 
-    console.log(post);
+
+    );
+
+
+
+
   }
 
   render() {
     const { user } = this.props.auth;
-    
+
     return (
       <div>
-      <Navbar />  
-      <div className="container valign-wrapper">
-        <div className="row">
-          <div className="col s12 center-align">
-            <h1>
-              <b>Post a Job</b>
-            </h1>
+        <Navbar />
+        <div className="container valign-wrapper">
+          <div className="row">
+            <div className="col s12 center-align">
+              <h2>
+                <b>Post a Job</b>
+              </h2>
               <div className="row">
                 <form className="col s12">
                   <div className='row'>
                     <div className='col s12'>
-                      <p style={{color: 'red', maxWidth: '300px', margin: 'auto'}}>{this.state.errors}</p>
+                      <p style={{ color: 'red', maxWidth: '300px', margin: 'auto' }}>{this.state.errors}</p>
                     </div>
                   </div>
                   <div className="row">
@@ -85,15 +128,15 @@ class Page1 extends Component {
                       <label for="compensation">Compensation</label>
                     </div>
                     <div className="input-field col s6">
-                    <select onChange={this.handleInputChange} value={this.state.newPost.jobType} name='jobType'>
-                      <option value="" disabled selected>Choose your option</option>
-                      <option value="Open House">Open house</option>
-                      <option value="Showing">Showing</option>
-                      <option value="Title Work">Title Work</option>
-                      <option value="Other">Other</option>
-                    </select>
-                    <label>Job Type</label>
-                  </div>
+                      <select onChange={this.handleInputChange} value={this.state.newPost.jobType} name='jobType'>
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="Open House">Open house</option>
+                        <option value="Showing">Showing</option>
+                        <option value="Title Work">Contract/Paperwork</option>
+                        <option value="Other">Other</option>
+                      </select>
+                      <label>Job Type</label>
+                    </div>
                   </div>
                   <div className="row">
                     <div className="input-field col s12">
@@ -109,18 +152,18 @@ class Page1 extends Component {
                   </div>
                   <div className="row">
                     <div className="input-field col s12">
-                      <textarea onChange={this.handleInputChange} value={this.state.newPost.notes} name='notes' id="notes" type="text" className="materialize-textarea" data-length='250'></textarea>
+                      <textarea onChange={this.handleInputChange} value={this.state.newPost.notes} name='notes' placeholder="Describe the details of this job..." id="notes" type="text" className="materialize-textarea" data-length='250'></textarea>
                       <label for="notes">Notes</label>
                     </div>
                   </div>
                   <button onClick={this.handleSubmit} class="btn waves-effect deep-purple accent-3" type="submit" name="action">Post Job
                     <i class="material-icons right">send</i>
-                  </button>       
+                  </button>
                 </form>
               </div>
+            </div>
           </div>
         </div>
-      </div>
       </div>
     );
   }

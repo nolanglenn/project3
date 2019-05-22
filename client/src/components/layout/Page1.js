@@ -4,10 +4,7 @@ import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/authActions';
 //import { Link } from "react-router-dom";
 import Navbar from '../navbar/Navbar';
-import Geocode from "react-geocode";
-
-
-
+import Geocode from 'react-geocode';
 
 class Page1 extends Component {
   constructor(props) {
@@ -30,9 +27,7 @@ class Page1 extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-
-
-  handleInputChange = (e) => {
+  handleInputChange = e => {
     const target = e.target;
     const value = target.value;
     const name = target.name;
@@ -40,23 +35,34 @@ class Page1 extends Component {
     console.log(`Input name ${name}. Input value ${value}`);
 
     this.setState({ newPost: { ...this.state.newPost, [name]: value } });
- }
+  };
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
-    if (this.state.newPost.jobTitle === '' || this.state.newPost.compensation === '' || this.state.newPost.jobType === '' ||
-    this.state.newPost.address === '' || this.state.newPost.date === '') {
-    this.setState({ errors: 'One or more required input fields are not filled out. Please ammend your job posting.' })
-    return false
-  }
-  else if (this.state.newPost.jobType === 'Other' && this.state.newPost.notes === '') {
-    this.setState({ errors: 'You have selected OTHER in the job type field. Please add some notes so a user can understand the job type.' })
-    return false
-  }
-  
+    if (
+      this.state.newPost.jobTitle === '' ||
+      this.state.newPost.compensation === '' ||
+      this.state.newPost.jobType === '' ||
+      this.state.newPost.address === '' ||
+      this.state.newPost.date === ''
+    ) {
+      this.setState({
+        errors:
+          'One or more required input fields are not filled out. Please ammend your job posting.'
+      });
+      return false;
+    } else if (
+      this.state.newPost.jobType === 'Other' &&
+      this.state.newPost.notes === ''
+    ) {
+      this.setState({
+        errors:
+          'You have selected OTHER in the job type field. Please add some notes so a user can understand the job type.'
+      });
+      return false;
+    }
 
-    Geocode.setApiKey("AIzaSyAfJNJ2bbBofLbgi4T55vXkNGLSA7LsPlM");
-
+    Geocode.setApiKey('AIzaSyAfJNJ2bbBofLbgi4T55vXkNGLSA7LsPlM');
 
     if (
       this.state.newPost.title === '' ||
@@ -142,7 +148,7 @@ class Page1 extends Component {
       .catch(err => {
         console.log(err);
       });
-  };
+
     // Enable or disable logs. Its optional.
     Geocode.enableDebug();
     //  console.log(this.props.newPost.address);
@@ -152,22 +158,18 @@ class Page1 extends Component {
 
         // geocode.push(lat, lng);
         console.log(lat);
-        this.setState({ newPost: { ...this.state.newPost, geocodeLat: lat, geocodeLng: lng } });
+        this.setState({
+          newPost: { ...this.state.newPost, geocodeLat: lat, geocodeLng: lng }
+        });
 
-        const post = this.state.newPost; 
+        const post = this.state.newPost;
         console.log(post);
       },
       error => {
         console.error(error);
       }
-
-
     );
-
-
-
-
-  }
+  };
 
   render() {
     const { user } = this.props.auth;
@@ -178,15 +180,22 @@ class Page1 extends Component {
         <div className="container valign-wrapper">
           <div className="row">
             <div className="col s12 center-align">
-
               <h2>
                 <b>Post a Job</b>
               </h2>
               <div className="row">
                 <form className="col s12">
-                  <div className='row'>
-                    <div className='col s12'>
-                      <p style={{ color: 'red', maxWidth: '300px', margin: 'auto' }}>{this.state.errors}</p>
+                  <div className="row">
+                    <div className="col s12">
+                      <p
+                        style={{
+                          color: 'red',
+                          maxWidth: '300px',
+                          margin: 'auto'
+                        }}
+                      >
+                        {this.state.errors}
+                      </p>
                     </div>
                   </div>
                   <div className="row">
@@ -218,9 +227,14 @@ class Page1 extends Component {
                       <label for="compensation">Compensation</label>
                     </div>
                     <div className="input-field col s6">
-
-                      <select onChange={this.handleInputChange} value={this.state.newPost.jobType} name='jobType'>
-                        <option value="" disabled selected>Choose your option</option>
+                      <select
+                        onChange={this.handleInputChange}
+                        value={this.state.newPost.jobType}
+                        name="jobType"
+                      >
+                        <option value="" disabled selected>
+                          Choose your option
+                        </option>
                         <option value="Open House">Open house</option>
                         <option value="Showing">Showing</option>
                         <option value="Title Work">Contract/Paperwork</option>
@@ -256,8 +270,16 @@ class Page1 extends Component {
                   </div>
                   <div className="row">
                     <div className="input-field col s12">
-
-                      <textarea onChange={this.handleInputChange} value={this.state.newPost.notes} name='notes' placeholder="Describe the details of this job..." id="notes" type="text" className="materialize-textarea" data-length='250'></textarea>
+                      <textarea
+                        onChange={this.handleInputChange}
+                        value={this.state.newPost.notes}
+                        name="notes"
+                        placeholder="Describe the details of this job..."
+                        id="notes"
+                        type="text"
+                        className="materialize-textarea"
+                        data-length="250"
+                      />
                       <label for="notes">Notes</label>
                     </div>
                   </div>

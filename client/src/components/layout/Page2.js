@@ -19,7 +19,7 @@ class Page2 extends Component {
   }
 
   componentDidMount() {
-    //TODO: make api call to grab selected job detail, pass those values in below...
+    //TODO: make api call to grab selected jobs, pass those objects in below...
     setTimeout(() => {
       this.setState({
         jobs: [{

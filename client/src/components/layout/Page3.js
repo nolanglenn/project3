@@ -126,7 +126,7 @@ class Page3 extends Component {
             </div>
           </div>
 
-          <button></button>
+          <a class="waves-effect waves-light btn">HERE IS A BUTTON TO ACCEPT OR CLOSE A JOB</a>
         </div>
 
       </div>

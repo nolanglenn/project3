@@ -41,6 +41,7 @@ input JobInput {
   jobType: String!
   compensation: Float!
   date: String!
+  creator:String!
 }
 
 input UserInput {

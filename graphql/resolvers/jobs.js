@@ -4,7 +4,7 @@ const User = require('../../models/user');
 const { transformEvent } = require('./merge');
 
 module.exports = {
-  events: async () => {
+  jobs: async () => {
     try {
       const events = await Event.find();
       return events.map(event => {
@@ -14,27 +14,28 @@ module.exports = {
       throw err;
     }
   },
-  createEvent: async (args, req) => {
-    if (!req.isAuth) {
-      throw new Error('Unauthenticated!');
-    }
+  createJob: async (args, req) => {
+    console.log(args);
+
     const event = new Event({
-      title: args.eventInput.title,
-      description: args.eventInput.description,
-      price: +args.eventInput.price,
-      date: new Date(args.eventInput.date),
-      creator: req.userId
+      title: args.jobInput.title,
+      notes: args.jobInput.notes,
+      address: args.jobInput.address,
+      jobType: args.jobInput.jobType,
+      compensation: +args.jobInput.compensation,
+      date: new Date(args.jobInput.date),
+      creator: args.jobInput.creator
     });
     let createdEvent;
     try {
       const result = await event.save();
       createdEvent = transformEvent(result);
-      const creator = await User.findById(req.userId);
+      const creator = await User.findById(args.jobInput.creator);
 
       if (!creator) {
         throw new Error('User not found.');
       }
-      creator.createdEvents.push(event);
+      creator.createdJobs.push(event);
       await creator.save();
 
       return createdEvent;

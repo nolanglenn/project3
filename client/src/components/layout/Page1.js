@@ -174,7 +174,7 @@ class Page1 extends Component {
               throw new Error('Failed!');
             }
 
-            return this.props.history.push('/page3');
+            return this.props.history.push('/page2');
           })
           .catch(err => {
             console.log(err);

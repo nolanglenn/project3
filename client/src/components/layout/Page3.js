@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/authActions';
 //import { Link } from "react-router-dom";
 import Navbar from '../navbar/Navbar';
+import Compiled from './Commenting/components/Compiled';
 import './style.css';
 import {
   withScriptjs,
@@ -29,6 +30,14 @@ class Page3 extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      /* load comments in array from database */
+      comments: [],
+      newComment: {
+        originUser: this.props.auth.user.id,
+        imageURL: '',
+        comment: '',
+        name: this.props.auth.user.name
+      },
       errors: '',
       currentJob: null
     };
@@ -70,7 +79,7 @@ class Page3 extends Component {
           <div className="row">
             <div className="col s12 center-align">
               <h4>
-                <b>Job Detail:</b>
+                <b>Job Detail</b>
                 <hr style={{ width: '80%' }} />
               </h4>
             </div>
@@ -89,30 +98,30 @@ class Page3 extends Component {
             style={{ display: 'flex', justifyContent: 'space-between' }}
           >
             <div className="col m6 s12">
-              <h5 style={{ display: 'block' }}>Date of Job:</h5>
+              <h5 style={{ display: 'block' }}><b>Date of Job</b></h5>
               <h6>{this.state.currentJob.date}</h6>
             </div>
             <div className="col m6 s12">
-              <h5>Compensation:</h5>
+              <h5><b>Compensation</b></h5>
               <h6>{this.state.currentJob.compensation}</h6>
             </div>
           </div>
 
-          <hr style={{ width: '80%' }} />
+          <hr />
           <br />
 
           <br />
 
           <div className="row">
             <div className="col s12 m6">
-              <h5>Notes:</h5>
+              <h5><b>Notes</b></h5>
               <h6>{this.state.currentJob.notes}</h6>
             </div>
             <div className="col s12 m6 contentSections">
-              <h5>Map:</h5>
+              <h5><b>Map</b></h5>
               <MyMapComponent
                 isMarkerShown
-                googleMapURL="https://maps.googleapis.com/maps/api/js?key=  &v=3.exp&libraries=geometry,drawing,places"
+                googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfJNJ2bbBofLbgi4T55vXkNGLSA7LsPlM&v=3.exp&libraries=geometry,drawing,places"
                 loadingElement={<div style={{ height: `100%` }} />}
                 containerElement={<div style={{ height: `300px` }} />}
                 mapElement={<div style={{ height: `100%` }} />}
@@ -120,18 +129,17 @@ class Page3 extends Component {
                 lng={this.state.currentJob.geocodeLng}
               />
             </div>
-          </div>
-
-          <div className="row">
-            <div className="col s12 m6 contentSections">
-              <h5>Comments:</h5>
-              <h6>ALL COMMENTS TO DISPLAY HERE</h6>
+            <div style={{textAlign: 'center', margin: '45px auto 0 auto'}} className='col s12'>
+              <a className="waves-effect waves-light btn">
+                HERE IS A BUTTON TO ACCEPT OR CLOSE A JOB
+              </a>
             </div>
           </div>
+          <br></br>
+          <hr />
 
-          <a className="waves-effect waves-light btn">
-            HERE IS A BUTTON TO ACCEPT OR CLOSE A JOB
-          </a>
+          <Compiled />
+        
         </div>
       </div>
     );

@@ -23,6 +23,14 @@ const jobSchema = new Schema({
     type: Number,
     required: true
   },
+  geocodeLng: {
+    type: Number,
+    required: true
+  },
+  geocodeLat: {
+    type: Number,
+    required: true
+  },
 
   date: {
     type: Date,

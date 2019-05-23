@@ -14,10 +14,13 @@ type Job {
   title: String!
   notes: String!
   address: String!
+  geocodeLat:Float!,
+  geocodeLng:Float!,
   jobType: String!
   compensation: Float!
   date: String!
   creator: User!
+  
 }
 
 type User {
@@ -38,6 +41,8 @@ input JobInput {
   title: String!
   notes: String!
   address: String!
+  geocodeLat:Float!,
+  geocodeLng:Float!,
   jobType: String!
   compensation: Float!
   date: String!

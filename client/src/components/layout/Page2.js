@@ -92,12 +92,12 @@ class Page2 extends Component {
                   <ListItem key={jobs._id}>
                     <div className="row list-item">
                       <div className="col-6 col-md-4">
-                        <a href={jobs._iD} target="_blank">
-                          <strong style={{ fontSize: '1.5rem' }}>
-                            {jobs.title} : &nbsp; {jobs.jobType}
-                          </strong>
-                        </a>
-
+                        <h4>
+                          Title:
+                          <p>{jobs.title} </p>
+                          Type of Job:
+                          <p>{jobs.jobType}</p>
+                        </h4>
                         <div>
                           {this.props.auth.user.id === jobs.creator._id ? (
                             <React.Fragment>
@@ -106,8 +106,9 @@ class Page2 extends Component {
                             </React.Fragment>
                           ) : (
                             <React.Fragment>
-                              <p>Explore this opportunity!</p>
-                              <button className="btn">View Details</button>
+                              <button className="btn">
+                                Explore this opportunity!
+                              </button>
                             </React.Fragment>
                           )}
                         </div>

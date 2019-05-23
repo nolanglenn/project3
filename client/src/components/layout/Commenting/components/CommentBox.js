@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import Avatar from 'react-avatar';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { logoutUser } from '../../../../actions/authActions';
  
 class CommentBox extends Component {
   constructor(props) {
@@ -9,12 +12,13 @@ class CommentBox extends Component {
   addComment(e) {
     // Prevent the default behaviour of form submit
     e.preventDefault();
+    console.log(this.props.auth.user.id);
    
     // Get the value of the comment box
     // and make sure it not some empty strings
     const comment = e.target.elements.comment.value.trim();
-    const name = 'Name form the user';
-    const originUser = 'Hello';
+    const name = this.props.auth.user.name;
+    const originUser = this.props.auth.user.id;
     const imageURL = 'image';
    
     // Make sure name and comment boxes are filled
@@ -39,6 +43,9 @@ class CommentBox extends Component {
   }
  
   render() {
+
+    const { user } = this.props.auth;
+    
     return (
       <div>
         <form onSubmit={this.addComment}>
@@ -49,7 +56,7 @@ class CommentBox extends Component {
             <div style={{margin: '0 10px 0 10px'}} className='input-field col s12'>
                 <div className='row'>
                     <div className='col s2'>
-                        <Avatar style={{margin: '10px auto 10px auto'}} name="Wim Mostmans" src='' size="60" round={true}/>
+                        <Avatar style={{margin: '10px auto 10px auto'}} name={this.props.auth.user.name} src='' size="60" round={true}/>
                     </div>
                     <div className="input-field col s9">
                         <textarea name='comment' id="textarea" className="materialize-textarea"></textarea>
@@ -66,5 +73,17 @@ class CommentBox extends Component {
     );
   }
 }
+
+CommentBox.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { logoutUser }
+)(CommentBox);
  
-export default CommentBox;

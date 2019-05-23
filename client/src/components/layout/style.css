@@ -1,4 +1,8 @@
 .contentSections {
-    margin-left: 10%;
- 
+  margin-left: 10%;
+}
+.list-item p {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #7c7c7c;
 }

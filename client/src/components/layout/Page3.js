@@ -7,6 +7,20 @@ import Navbar from '../navbar/Navbar';
 import "./style.css";
 
 class Page3 extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      /* load comments in array from database */
+      comments: [],
+      newComment: {
+        originUser: this.props.auth.user.id,
+        imageURL: '',
+        comment: '',
+        name: this.props.auth.user.name
+      }
+    }
+  }
+
   render() {
     const { user } = this.props.auth;
 

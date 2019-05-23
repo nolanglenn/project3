@@ -21,6 +21,8 @@ module.exports = {
       title: args.jobInput.title,
       notes: args.jobInput.notes,
       address: args.jobInput.address,
+      geocodeLat: args.jobInput.geocodeLat,
+      geocodeLng: args.jobInput.geocodeLng,
       jobType: args.jobInput.jobType,
       compensation: +args.jobInput.compensation,
       date: new Date(args.jobInput.date),

@@ -86,89 +86,100 @@ class Page1 extends Component {
       });
       return false;
     }
+    // Enable or disable logs. Its optional.
+    Geocode.enableDebug();
+    //  console.log(this.props.newPost.address);
+    Geocode.fromAddress(this.state.newPost.address)
+      .then(
+        response => {
+          const { lat, lng } = response.results[0].geometry.location;
 
-    const post = this.state.newPost;
-    const requestBody = {
-      query: `
+          // geocode.push(lat, lng);
+          console.log(lat);
+          this.setState({
+            newPost: { ...this.state.newPost, geocodeLat: lat, geocodeLng: lng }
+          });
+
+          const post = this.state.newPost;
+          console.log(post);
+        },
+        error => {
+          console.error(error);
+        }
+      )
+      .then(() => {
+        const post = this.state.newPost;
+        console.log(post);
+        const requestBody = {
+          query: `
           mutation CreateJob(
             $title: String!,
-            $jobType:String!, 
-            $notes: String!, 
-            $compensation: Float!, 
+            $jobType:String!,
+            $notes: String!,
+            $compensation: Float!,
             $date: String!,
             $address:String!
+            $geocodeLat:Float!,
+            $geocodeLng:Float!,
             $creator:String!
-            ) 
+            )
             {
             createJob
             (jobInput: {
-              title: $title, 
-              notes: $notes, 
-              address: $address, 
-              compensation: $compensation, 
+              title: $title,
+              notes: $notes,
+              address: $address,
+              geocodeLat:$geocodeLat,
+              geocodeLng:$geocodeLng,
+              compensation: $compensation,
               date: $date,
               jobType:$jobType
               creator:$creator
-            }) 
+            })
               {
               _id
               title
               compensation
               jobType
               address
+              geocodeLat
+              geocodeLng
               date
               notes
             }
           }
         `,
-      variables: {
-        title: post.title,
-        compensation: +post.compensation,
-        jobType: post.jobType,
-        address: post.address,
-        date: post.date,
-        notes: post.notes,
-        creator: this.props.auth.user.id
-      }
-    };
-    console.log(requestBody);
-    fetch('/graphql', {
-      method: 'POST',
-      body: JSON.stringify(requestBody),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(res => {
-        if (res.status !== 200 && res.status !== 201) {
-          throw new Error('Failed!');
-        }
-        return res.json();
-      })
-      .catch(err => {
-        console.log(err);
+          variables: {
+            title: post.title,
+            compensation: +post.compensation,
+            jobType: post.jobType,
+            address: post.address,
+            geocodeLat: post.geocodeLat,
+            geocodeLng: post.geocodeLng,
+            date: post.date,
+            notes: post.notes,
+            creator: this.props.auth.user.id
+          }
+        };
+        console.log(requestBody);
+        fetch('/graphql', {
+          method: 'POST',
+          body: JSON.stringify(requestBody),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+          .then(res => {
+            if (res.status !== 200 && res.status !== 201) {
+              throw new Error('Failed!');
+            }
+
+            return this.props.history.push('/page3');
+          })
+          .catch(err => {
+            console.log(err);
+          });
       });
-
-    // Enable or disable logs. Its optional.
-    Geocode.enableDebug();
-    //  console.log(this.props.newPost.address);
-    Geocode.fromAddress(this.state.newPost.address).then(
-      response => {
-        const { lat, lng } = response.results[0].geometry.location;
-
-        // geocode.push(lat, lng);
-        console.log(lat);
-        this.setState({
-          newPost: { ...this.state.newPost, geocodeLat: lat, geocodeLng: lng }
-        });
-
-        const post = this.state.newPost;
-        console.log(post);
-      },
-      error => {
-        console.error(error);
-      }
-    );
   };
 
   render() {

@@ -18,37 +18,50 @@ class Page2 extends Component {
 
   componentDidMount() {
     //TODO: make api call to grab selected jobs, pass those objects in below...
-    setTimeout(() => {
-      this.setState({
-        jobs: [
-          {
-            // originUser: this.props.auth.user.id,
-            jobID: 1,
-            jobTitle: 'Temp Job 1- Open House',
-            compensation: '$50',
-            jobType: 'Open House'
-          },
-          {
-            jobID: 2,
-            jobTitle: 'Temp Job 2 - Open House',
-            compensation: '$50',
-            jobType: 'Open House'
-          },
-          {
-            jobID: 3,
-            jobTitle: 'Temp Job 3 - Open House',
-            compensation: '$50',
-            jobType: 'Open House'
-          },
-          {
-            jobID: 4,
-            jobTitle: 'Temp Job 4- Open House',
-            compensation: '$50',
-            jobType: 'Open House'
+    const requestBody = {
+      query: `
+          query {
+            jobs {
+              _id
+              title
+              notes
+              address
+              geocodeLat
+              geocodeLng
+              jobType
+              compensation
+              date
+              creator {
+                _id
+                email
+              }
+            }
           }
-        ]
+        `
+    };
+    fetch('/graphql', {
+      method: 'POST',
+      body: JSON.stringify(requestBody),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => {
+        if (res.status !== 200 && res.status !== 201) {
+          throw new Error('Failed!');
+        }
+        return res.json();
+      })
+      .then(resData => {
+        const events = resData.data.jobs;
+        console.log('These are all available jobs: ', events);
+        this.setState({
+          jobs: [...events]
+        });
+      })
+      .catch(err => {
+        console.log(err);
       });
-    }, 1000);
   }
 
   render() {
@@ -77,14 +90,15 @@ class Page2 extends Component {
             <div className="col s12 center-align">
               <List>
                 {this.state.jobs.map(jobs => (
-                  <ListItem>
+                  <ListItem key={jobs.jobID}>
                     <div className="row">
                       <div className="col-6 col-md-4">
-                        <a href={jobs.jobID} target="_blank">
+                        <a href={jobs._iD} target="_blank">
                           <strong style={{ fontSize: '1.5rem' }}>
-                            {jobs.jobTitle}
+                            {jobs.title}
                           </strong>
                         </a>
+                        <p>{jobs.jobType}</p>
                         <a
                           className="waves-effect waves-light btn-small"
                           style={{ marginLeft: '20px' }}

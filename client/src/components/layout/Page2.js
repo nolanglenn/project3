@@ -6,6 +6,7 @@ import { logoutUser } from '../../actions/authActions';
 import Navbar from '../navbar/Navbar';
 import { List } from '../List';
 import { ListItem } from '../List';
+import './style.css';
 
 class Page2 extends Component {
   constructor(props) {
@@ -26,8 +27,6 @@ class Page2 extends Component {
               title
               notes
               address
-              geocodeLat
-              geocodeLng
               jobType
               compensation
               date
@@ -90,21 +89,29 @@ class Page2 extends Component {
             <div className="col s12 center-align">
               <List>
                 {this.state.jobs.map(jobs => (
-                  <ListItem key={jobs.jobID}>
-                    <div className="row">
+                  <ListItem key={jobs._id}>
+                    <div className="row list-item">
                       <div className="col-6 col-md-4">
-                        <a href={jobs._iD} target="_blank">
-                          <strong style={{ fontSize: '1.5rem' }}>
-                            {jobs.title}
-                          </strong>
-                        </a>
-                        <p>{jobs.jobType}</p>
-                        <a
-                          className="waves-effect waves-light btn-small"
-                          style={{ marginLeft: '20px' }}
-                        >
-                          Detail
-                        </a>
+                        <h4>
+                          Title:
+                          <p>{jobs.title} </p>
+                          Type of Job:
+                          <p>{jobs.jobType}</p>
+                        </h4>
+                        <div>
+                          {this.props.auth.user.id === jobs.creator._id ? (
+                            <React.Fragment>
+                              <p>Your the owner of this Job.</p>
+                              <button className="btn">View Details</button>
+                            </React.Fragment>
+                          ) : (
+                            <React.Fragment>
+                              <button className="btn">
+                                Explore this opportunity!
+                              </button>
+                            </React.Fragment>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </ListItem>

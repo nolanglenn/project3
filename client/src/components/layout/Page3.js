@@ -5,6 +5,7 @@ import { logoutUser } from '../../actions/authActions';
 //import { Link } from "react-router-dom";
 import Navbar from '../navbar/Navbar';
 import Compiled from './Commenting/components/Compiled';
+import Button from './Button/Button';
 import './style.css';
 import {
   withScriptjs,
@@ -90,6 +91,9 @@ class Page3 extends Component {
               <h4>
                 <b>{this.state.currentJob.jobTitle}</b>
               </h4>
+              <div style={{margin: '40px auto 10px auto'}}>
+                <Button />
+              </div>
             </div>
           </div>
 
@@ -130,9 +134,7 @@ class Page3 extends Component {
               />
             </div>
             <div style={{textAlign: 'center', margin: '45px auto 0 auto'}} className='col s12'>
-              <a className="waves-effect waves-light btn">
-                HERE IS A BUTTON TO ACCEPT OR CLOSE A JOB
-              </a>
+          
             </div>
           </div>
           <br></br>

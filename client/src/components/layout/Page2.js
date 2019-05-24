@@ -7,6 +7,7 @@ import Navbar from '../navbar/Navbar';
 import { List } from '../List';
 import { ListItem } from '../List';
 import './style.css';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 class Page2 extends Component {
   constructor(props) {
@@ -25,14 +26,10 @@ class Page2 extends Component {
             jobs {
               _id
               title
-              notes
-              address
               jobType
-              compensation
               date
               creator {
-                _id
-                email
+                _id 
               }
             }
           }
@@ -63,6 +60,9 @@ class Page2 extends Component {
       });
   }
 
+  viewDetails = id => {
+    return this.props.history.push('/page3/');
+  };
   render() {
     const { user } = this.props.auth;
     if (!this.state.jobs) {
@@ -102,13 +102,28 @@ class Page2 extends Component {
                           {this.props.auth.user.id === jobs.creator._id ? (
                             <React.Fragment>
                               <p>Your the owner of this Job.</p>
-                              <button className="btn">View Details</button>
+                              <Link
+                                className="btn"
+                                to={{
+                                  pathname: '/page3',
+                                  search: '?name=' + jobs._id
+                                }}
+                              >
+                                View Details
+                              </Link>
                             </React.Fragment>
                           ) : (
                             <React.Fragment>
-                              <button className="btn">
+                              <Link
+                                className="btn"
+                                to={{
+                                  pathname: '/page3',
+                                  search: '?name=' + jobs._id
+                                }}
+                                className="btn"
+                              >
                                 Explore this opportunity!
-                              </button>
+                              </Link>
                             </React.Fragment>
                           )}
                         </div>

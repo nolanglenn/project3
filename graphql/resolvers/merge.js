@@ -31,8 +31,10 @@ const events = async eventIds => {
 const singleEvent = async eventId => {
   try {
     const event = await eventLoader.load(eventId.toString());
+    console.log('event :', event);
     return event;
   } catch (err) {
+    console.log('err :', err);
     throw err;
   }
 };
@@ -51,6 +53,8 @@ const user = async userId => {
 };
 
 const transformEvent = event => {
+  console.log('THE EVENT: ', event);
+
   return {
     ...event._doc,
     _id: event.id,
@@ -72,3 +76,6 @@ const transformBooking = booking => {
 
 exports.transformEvent = transformEvent;
 exports.transformBooking = transformBooking;
+exports.user = user;
+exports.events = events;
+exports.singleEvent = singleEvent;

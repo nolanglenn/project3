@@ -56,6 +56,7 @@ input UserInput {
 }
 
 type RootQuery {
+    selectedJob(jobId:ID): Job
     jobs: [Job!]!
     bookings: [Booking!]!
     login(email: String!, password: String!): AuthData!

@@ -176,6 +176,7 @@ class Page3 extends Component {
                 lng={this.state.currentJob.geocodeLng}
               />
             </div>
+
             <div
               style={{ textAlign: 'center', margin: '45px auto 0 auto' }}
               className="col s12"

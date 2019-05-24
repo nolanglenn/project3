@@ -1,13 +1,28 @@
 const Event = require('../../models/job');
 const User = require('../../models/user');
 
-const { transformEvent } = require('./merge');
+const { transformEvent, singleEvent } = require('./merge');
 
 module.exports = {
+  selectedJob: async (args, req) => {
+    console.log('This is ID#1: ', req.body.variables.jobId);
+    try {
+      const job = await Event.find({ _id: req.body.variables.jobId });
+      console.log(job[0]);
+
+      return job[0];
+    } catch (err) {
+      console.log(err);
+
+      throw err;
+    }
+  },
   jobs: async () => {
     try {
       const events = await Event.find();
       return events.map(event => {
+        console.log(event);
+
         return transformEvent(event);
       });
     } catch (err) {

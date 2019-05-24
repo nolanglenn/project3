@@ -13,7 +13,10 @@ import {
   GoogleMap,
   Marker
 } from 'react-google-maps';
-
+import { log } from 'util';
+// eslint-disable-next-line no-restricted-globals
+let params;
+let searchId;
 const MyMapComponent = withScriptjs(
   withGoogleMap(props => (
     <GoogleMap
@@ -45,23 +48,55 @@ class Page3 extends Component {
   }
 
   componentDidMount() {
-    //TODO: make api call to grab selected job detail, pass those values in below...
-    setTimeout(() => {
-      this.setState({
-        currentJob: {
-          originUser: this.props.auth.user.id,
-          jobTitle: 'Temp Job - Open House',
-          compensation: '$50',
-          jobType: 'Open House',
-          address: '5312 Bull Run, Austin, TX',
-          geocodeLat: 30.4216151,
-          geocodeLng: -97.7417339,
-          date: '08/12/2019',
-          notes:
-            'Here are some notes to fill the space. Hey look, what a cool map!'
+    // eslint-disable-next-line no-restricted-globals
+    let params = new URLSearchParams(location.search);
+    let searchId = params.get('name');
+
+    const requestBody = {
+      query: `
+          query 
+            selectedJob($jobId:ID) {
+              selectedJob(jobId:$jobId){
+                _id
+                title
+                notes
+                address
+                geocodeLat
+                geocodeLng
+                jobType
+                compensation
+                date
+              }
+          }
+        `,
+      variables: {
+        jobId: searchId
+      }
+    };
+
+    fetch('/graphql', {
+      method: 'POST',
+      body: JSON.stringify(requestBody),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => {
+        if (res.status !== 200 && res.status !== 201) {
+          throw new Error('Failed!');
         }
+
+        return res.json();
+      })
+      .then(resData => {
+        const events = resData.data.selectedJob;
+        this.setState({
+          currentJob: { ...events }
+        });
+      })
+      .catch(err => {
+        console.log(err);
       });
-    }, 1000);
   }
 
   render() {
@@ -89,7 +124,7 @@ class Page3 extends Component {
           <div className="row">
             <div className="col s12 center-align">
               <h4>
-                <b>{this.state.currentJob.jobTitle}</b>
+                <b>{this.state.currentJob.title}</b>
               </h4>
               <div style={{margin: '40px auto 10px auto'}}>
                 <Button />
@@ -102,11 +137,15 @@ class Page3 extends Component {
             style={{ display: 'flex', justifyContent: 'space-between' }}
           >
             <div className="col m6 s12">
-              <h5 style={{ display: 'block' }}><b>Date of Job</b></h5>
+              <h5 style={{ display: 'block' }}>
+                <b>Date of Job</b>
+              </h5>
               <h6>{this.state.currentJob.date}</h6>
             </div>
             <div className="col m6 s12">
-              <h5><b>Compensation</b></h5>
+              <h5>
+                <b>Compensation</b>
+              </h5>
               <h6>{this.state.currentJob.compensation}</h6>
             </div>
           </div>
@@ -118,11 +157,15 @@ class Page3 extends Component {
 
           <div className="row">
             <div className="col s12 m6">
-              <h5><b>Notes</b></h5>
+              <h5>
+                <b>Notes</b>
+              </h5>
               <h6>{this.state.currentJob.notes}</h6>
             </div>
             <div className="col s12 m6 contentSections">
-              <h5><b>Map</b></h5>
+              <h5>
+                <b>Map</b>
+              </h5>
               <MyMapComponent
                 isMarkerShown
                 googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfJNJ2bbBofLbgi4T55vXkNGLSA7LsPlM&v=3.exp&libraries=geometry,drawing,places"
@@ -135,13 +178,13 @@ class Page3 extends Component {
             </div>
             <div style={{textAlign: 'center', margin: '45px auto 0 auto'}} className='col s12'>
           
+
             </div>
           </div>
-          <br></br>
+          <br />
           <hr />
 
           <Compiled />
-        
         </div>
       </div>
     );

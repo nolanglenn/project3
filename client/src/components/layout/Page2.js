@@ -14,12 +14,12 @@ class Page2 extends Component {
     super(props);
     this.state = {
       errors: '',
-      jobs: null
+      jobs: null,
+      filterValue: ''
     };
   }
 
   componentDidMount() {
-    //TODO: make api call to grab selected jobs, pass those objects in below...
     const requestBody = {
       query: `
           query {
@@ -60,14 +60,33 @@ class Page2 extends Component {
       });
   }
 
+  handleFilterChange = (e) => {
+    const target = e.target;
+    const value = target.value;
+
+    this.setState({ filterValue: value});
+  };
+
   viewDetails = id => {
     return this.props.history.push('/page3/');
   };
   render() {
     const { user } = this.props.auth;
+    let filteredJobs = this.state.jobs;
+
     if (!this.state.jobs) {
       return <p>Loading...</p>;
     }
+    if (this.state.filterValue) {
+      filteredJobs = this.state.jobs.filter((job) => {
+        return job.jobType === this.state.filterValue;
+      });
+
+      //TODO: Break this entire page into smaller components, find a way to put this in the right display area
+      // if(filteredJobs.length === 0) {
+      //   return <p>No results to display.</p>
+      // }
+    } 
     return (
       <div>
         <Navbar />
@@ -82,26 +101,51 @@ class Page2 extends Component {
                 <b>Available Jobs:</b>
                 <hr style={{ width: '80%' }} />
               </h4>
+
+            </div>
+
+            <div className="input-field col s3 offset-s8">
+              <select
+                onChange={this.handleFilterChange}
+                value={this.state.filterValue} style={{ fontSize: '1.75rem' }}>
+                <option value="">Filter by...</option>
+                <option value="Open House">Open House</option>
+                <option value="Showings">Showings</option>
+                <option value="Title Work">Office/Paperwork</option>
+                <option value="Other">Other</option>
+              </select>
             </div>
           </div>
 
           <div className="row">
             <div className="col s12 center-align">
               <List>
-                {this.state.jobs.map(jobs => (
+                {filteredJobs.map(jobs => (
                   <ListItem key={jobs._id}>
                     <div className="row list-item">
-                      <div className="col-6 col-md-4">
-                        <h4>
-                          Title:
-                          <p>{jobs.title} </p>
-                          Type of Job:
+                      <div className="col-8 col-md-6" style={{ display: 'inline-block', paddingBottom: '15px' }}>
+                        <div className="col">
+                          <h4>
+                            Type:
                           <p>{jobs.jobType}</p>
-                        </h4>
-                        <div>
+                          </h4>
+                        </div>
+                        <div className="col">
+                          <h4>
+                            Title:
+                          <p>{jobs.title} </p>
+                          </h4>
+                        </div>
+                        <div className="col">
+                          <h4>
+                            Date:
+                          <p>{jobs.date} </p>
+                          </h4>
+                        </div>
+                        <div className="col">
                           {this.props.auth.user.id === jobs.creator._id ? (
                             <React.Fragment>
-                              <p>Your the owner of this Job.</p>
+                              <p>You're the owner of this job</p>
                               <Link
                                 className="btn"
                                 to={{
@@ -113,19 +157,19 @@ class Page2 extends Component {
                               </Link>
                             </React.Fragment>
                           ) : (
-                            <React.Fragment>
-                              <Link
-                                className="btn"
-                                to={{
-                                  pathname: '/page3',
-                                  search: '?name=' + jobs._id
-                                }}
-                                className="btn"
-                              >
-                                Explore this opportunity!
+                              <React.Fragment>
+                                <Link
+                                  className="btn"
+                                  to={{
+                                    pathname: '/page3',
+                                    search: '?name=' + jobs._id
+                                  }}
+                                  className="btn"
+                                >
+                                  Explore this opportunity!
                               </Link>
-                            </React.Fragment>
-                          )}
+                              </React.Fragment>
+                            )}
                         </div>
                       </div>
                     </div>

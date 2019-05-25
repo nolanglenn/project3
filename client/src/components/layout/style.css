@@ -14,10 +14,10 @@
 }
 
 .select-wrapper input.select-dropdown {
-  font-size: 1.75rem;
+  font-size: 1.25rem;
 }
 
 .dropdown-content li>a, .dropdown-content li>span {
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: #4285f4;
 }

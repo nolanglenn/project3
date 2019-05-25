@@ -17,6 +17,19 @@ module.exports = {
       throw err;
     }
   },
+  userJobs: async (args, req) => {
+    console.log('This is ID#3: ', req.body.variables.userId);
+    try {
+      const job = await Event.find({ creator: req.body.variables.userId });
+      console.log(job);
+
+      return job;
+    } catch (err) {
+      console.log(err);
+
+      throw err;
+    }
+  },
   jobs: async () => {
     try {
       const events = await Event.find();

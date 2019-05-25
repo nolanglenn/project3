@@ -25,9 +25,14 @@ type Job {
 
 type User {
   _id: ID!
+
   name: String!
+  title:String
+  imageURL:String
+  broker:String
   email: String!
   password: String
+  comments:[String]
   createdJobs: [Job!]
 }
 
@@ -56,7 +61,9 @@ input UserInput {
 }
 
 type RootQuery {
+  userProfile(userId:ID):User
     selectedJob(jobId:ID): Job
+    userJobs(userId:ID): [Job]
     jobs: [Job!]!
     bookings: [Booking!]!
     login(email: String!, password: String!): AuthData!
@@ -67,6 +74,7 @@ type RootMutation {
     createUser(userInput: UserInput): User
     bookJob(jobId: ID!): Booking!
     cancelBooking(bookingId: ID!): Job!
+    updateUser(userInfo:String):User
 }
 
 schema {

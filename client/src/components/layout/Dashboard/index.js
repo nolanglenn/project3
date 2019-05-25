@@ -17,19 +17,19 @@ class Dashboard extends Component {
       <div className="container valign-wrapper">
         <div className="row">
           <div className="col s12 center-align">
-            <h1 id='header'>
+            <h4 id='header'>
               <b>Hello, {user.name.split(" ")[0]}</b>
-            </h1>
-            <h5 id='subheader' className='deep-purple-text darken-2'><b>You're Brokerage Firm Name Here</b></h5>
+            </h4>
+            <h5 id='subheader' className='deep-purple-text darken-2'><b>KPAN Realty Brokerage</b></h5>
           </div>
           <div id='largescreeninfo' className='col s12 center-align'>
-            <h2>
+            <h3>
               <b>0 Current Jobs</b> | <b>0 Postings</b>
-            </h2>
+            </h3>
           </div>
           <div id='smallscreeninfo' className='col s12 center-align'>
-            <h2 className='smallscreentxt'><b>0 Current Jobs</b></h2>
-            <h2 className='smallscreentxt'><b>0 Postings</b></h2>
+            <h4 className='smallscreentxt'><b>0 Current Jobs</b></h4>
+            <h4 className='smallscreentxt'><b>0 Postings</b></h4>
           </div>
           <div className="col s12 center-align">
             <h4 id='subheader'>

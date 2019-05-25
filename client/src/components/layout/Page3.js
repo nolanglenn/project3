@@ -146,7 +146,7 @@ class Page3 extends Component {
               <h5>
                 <b>Compensation</b>
               </h5>
-              <h6>{this.state.currentJob.compensation}</h6>
+              <h6>$ {this.state.currentJob.compensation}</h6>
             </div>
           </div>
 

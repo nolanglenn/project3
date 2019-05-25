@@ -173,8 +173,12 @@ class Page1 extends Component {
             if (res.status !== 200 && res.status !== 201) {
               throw new Error('Failed!');
             }
-
-            return this.props.history.push('/page2');
+            return res.json();
+          })
+          .then(res => {
+            debugger
+            console.log("input response", res)
+            return this.props.history.push('/page3/?name=' + res.data.createJob._id);
           })
           .catch(err => {
             console.log(err);
@@ -229,7 +233,7 @@ class Page1 extends Component {
                         onChange={this.handleInputChange}
                         value={this.state.newPost.compensation}
                         name="compensation"
-                        placeholder=""
+                        placeholder="$"
                         id="compensation"
                         type="number"
                         min="0"

@@ -7,7 +7,7 @@ class Landing extends Component {
         <div className="row">
           <div className="col s12 center-align">
             <h2>
-              Welcome to Open<b>House</b>
+              Welcome to Task<b>Trader</b>
             </h2>
             <p className="flow-text grey-text text-darken-1">
               Application Details Go Here

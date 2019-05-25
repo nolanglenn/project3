@@ -32,6 +32,11 @@ const jobSchema = new Schema({
     required: true
   },
 
+  comments: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  complete: {
+    type: Boolean,
+    default: false
+  },
   date: {
     type: Date,
     required: true

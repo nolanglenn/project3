@@ -64,11 +64,12 @@ const transformEvent = event => {
 };
 
 const transformBooking = booking => {
+  console.log('booking._doc:   ', booking._doc);
   return {
     ...booking._doc,
     _id: booking.id,
     user: user.bind(this, booking._doc.user),
-    event: singleEvent.bind(this, booking._doc.event),
+    job: singleEvent.bind(this, booking._doc.event),
     createdAt: dateToString(booking._doc.createdAt),
     updatedAt: dateToString(booking._doc.updatedAt)
   };

@@ -41,5 +41,37 @@ module.exports = {
       }
     );
     return { userId: user.id, token: token, tokenExpiration: 1 };
+  },
+  userProfile: async (args, req) => {
+    console.log(args);
+
+    console.log('This is ID#2: ', req.headers.user);
+    try {
+      const user = await User.find({ _id: req.headers.user });
+      console.log({ ...user });
+
+      return user[0];
+    } catch (err) {
+      console.log(err);
+
+      throw err;
+    }
+  },
+  updateUser: async (args, req) => {
+    try {
+      User.findOneAndUpdate(
+        req.headers.user,
+        { ...req.body.variables },
+        { upsert: true },
+        function(err, doc) {
+          console.log('Document: ', { ...doc._doc });
+          return { ...doc };
+        }
+      );
+    } catch (err) {
+      console.log(err);
+
+      throw err;
+    }
   }
 };

@@ -6,10 +6,26 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
+  title: {
+    type: String
+  },
+  imageURL: {
+    type: String
+  },
   email: {
     type: String,
     required: true
   },
+  broker: {
+    type: String
+    // required: true
+  },
+  comments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Job'
+    }
+  ],
   password: {
     type: String,
     required: true

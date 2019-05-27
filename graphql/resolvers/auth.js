@@ -62,7 +62,7 @@ module.exports = {
       User.findOneAndUpdate(
         req.headers.user,
         { ...req.body.variables },
-        { upsert: true },
+        { upsert: true, new: true },
         function(err, doc) {
           console.log('Document: ', { ...doc._doc });
           return { ...doc };

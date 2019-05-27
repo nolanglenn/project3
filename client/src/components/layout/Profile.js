@@ -258,7 +258,7 @@ class Profile extends Component {
         console.log(err);
       });
 
-    this.userProfile();
+    // this.userProfile();
   };
 
   /* Rendered Component */

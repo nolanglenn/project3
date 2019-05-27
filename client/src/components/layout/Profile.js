@@ -226,9 +226,9 @@ class Profile extends Component {
           mutation 
           updateUser($userInfo:String){
             updateUser(userInfo:$userInfo){
-              name
               title
               email
+              imageURL
             }
           }
         `,

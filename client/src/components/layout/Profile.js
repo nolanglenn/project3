@@ -224,9 +224,11 @@ class Profile extends Component {
     const requestBody = {
       query: `
           mutation 
-          updateUser($userInfo:String) {
+          updateUser($userInfo:String){
             updateUser(userInfo:$userInfo){
               name
+              title
+              email
             }
           }
         `,

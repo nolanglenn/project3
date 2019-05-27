@@ -58,16 +58,20 @@ module.exports = {
     }
   },
   updateUser: async (args, req) => {
+    console.log('THese are the variable: ', req.body.variables);
+
     try {
-      User.findOneAndUpdate(
+      const user = await User.findOneAndUpdate(
         req.headers.user,
         { ...req.body.variables },
         { upsert: true, new: true },
-        function(err, doc) {
-          console.log('Document: ', { ...doc._doc });
-          return { ...doc };
+        (err, doc) => {
+          console.log('Document: ', doc);
+          console.log('err: ', err);
+          return doc;
         }
       );
+      return user;
     } catch (err) {
       console.log(err);
 

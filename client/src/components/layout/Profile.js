@@ -7,6 +7,7 @@ import Navbar from '../navbar/Navbar';
 import Avatar from 'react-avatar';
 import { List } from '../List';
 import { ListItem } from '../List';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 class Profile extends Component {
   /* need to be sure and update constructor to take in database info. ex: title: {database.value ? database.value : ''} */
@@ -160,6 +161,8 @@ class Profile extends Component {
         return res.json();
       })
       .then(resData => {
+        console.log(resData);
+
         const userProfile = resData.data.userProfile;
         this.setState({ ...userProfile });
       })
@@ -345,7 +348,17 @@ class Profile extends Component {
                             <a href={jobs.id} target="_blank">
                               <strong>{jobs.title}</strong>
                             </a>
-                            <button>Detail</button>
+
+                            <Link
+                              className="btn"
+                              to={{
+                                pathname: '/page3',
+                                search: '?name=' + jobs._id
+                              }}
+                              className="btn"
+                            >
+                              View Details
+                            </Link>
                           </div>
                         </div>
                       </ListItem>

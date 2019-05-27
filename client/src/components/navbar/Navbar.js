@@ -45,11 +45,11 @@ class Navbar extends Component {
                 <li>
                   <Link to="/page2">Find a Job 2</Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link to={{ pathname: '/page3', search: '?id' }}>
                     Temp Job Details 3
                   </Link>
-                </li>
+                </li> */}
                 <li>
                   <Link to="/profile">Profile</Link>
                 </li>

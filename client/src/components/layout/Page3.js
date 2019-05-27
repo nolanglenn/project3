@@ -15,8 +15,7 @@ import {
 } from 'react-google-maps';
 import { log } from 'util';
 // eslint-disable-next-line no-restricted-globals
-let params;
-let searchId;
+
 const MyMapComponent = withScriptjs(
   withGoogleMap(props => (
     <GoogleMap
@@ -66,7 +65,11 @@ class Page3 extends Component {
                 jobType
                 compensation
                 date
+                creator{
+                  _id
+                }
               }
+              
           }
         `,
       variables: {
@@ -127,7 +130,10 @@ class Page3 extends Component {
                 <b>{this.state.currentJob.title}</b>
               </h4>
               <div style={{ margin: '40px auto 10px auto' }}>
-                <Button />
+                <Button
+                  creator={this.state.currentJob.creator._id}
+                  jobId={this.state.currentJob._id}
+                />
               </div>
             </div>
           </div>

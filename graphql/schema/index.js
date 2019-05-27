@@ -19,6 +19,7 @@ type Job {
   jobType: String!
   compensation: Float!
   date: String!
+  broker: String
   creator: User!
   
 }
@@ -72,7 +73,7 @@ type RootQuery {
 type RootMutation {
     createJob(jobInput: JobInput): Job
     createUser(userInput: UserInput): User
-    bookJob(jobId: ID!): Booking!
+    bookJob(jobId: ID!): Booking
     cancelBooking(bookingId: ID!): Job!
     updateUser(userInfo:String):User
 }

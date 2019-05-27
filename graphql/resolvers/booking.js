@@ -21,13 +21,13 @@ module.exports = {
       throw err;
     }
   },
-  bookEvent: async (args, req) => {
-    if (!req.isAuth) {
-      throw new Error('Unauthenticated!');
-    }
-    const fetchedEvent = await Event.findOne({ _id: args.eventId });
+  bookJob: async (args, req) => {
+    console.log('args :', args);
+    console.log('req :', req);
+
+    const fetchedEvent = await Event.findOne({ _id: args.jobId });
     const booking = new Booking({
-      user: req.userId,
+      user: req.headers.user,
       event: fetchedEvent
     });
     const result = await booking.save();

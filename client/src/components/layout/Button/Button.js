@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import DeleteJob from './DeleteJob';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../../actions/authActions';
 
@@ -207,6 +208,7 @@ class Button extends React.Component {
         >
           {this.state.status}
         </button>
+        <div>{(this.state.user === this.state.originUser && this.state.clickCount < 1) ? <DeleteJob /> : null }</div>
       </div>
     );
   }

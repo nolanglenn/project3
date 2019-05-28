@@ -43,7 +43,7 @@ class Navbar extends Component {
                   <Link to="/page1">Post a Job</Link>
                 </li>
                 <li>
-                  <Link to="/page2">Find a Job 2</Link>
+                  <Link to="/page2">Find a Job</Link>
                 </li>
                 {/* <li>
                   <Link to={{ pathname: '/page3', search: '?id' }}>
@@ -69,7 +69,7 @@ class Navbar extends Component {
               <Link to="/page1">Post a Job</Link>
             </li>
             <li>
-              <Link to="/page2">Find a Job 2</Link>
+              <Link to="/page2">Find a Job</Link>
             </li>
             <li>{/* <Link to="/page3/:id">Temp Job Details 3</Link> */}</li>
             <li>

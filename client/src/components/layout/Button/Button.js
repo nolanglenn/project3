@@ -137,6 +137,7 @@ class Button extends React.Component {
       query: `
           mutation bookJob($id: ID!) {
             bookJob(jobId: $id) {
+              count
               _id
               createdAt
               updatedAt
@@ -147,7 +148,8 @@ class Button extends React.Component {
           }
         `,
       variables: {
-        id: jobId
+        id: jobId,
+        count: this.state.clickCount
       }
     };
     console.log({ ...requestBody });
@@ -167,8 +169,12 @@ class Button extends React.Component {
         return res.json();
       })
       .then(resData => {
+        console.log(resData.data.bookJob.count);
+
         const booked = resData.data.bookJob;
-        this.setState({ booked: booked });
+        console.log(booked.count);
+        this.setState({ booked: booked, clickCount: booked.count });
+        this.statusChange();
       })
       .catch(err => {
         console.log(err);

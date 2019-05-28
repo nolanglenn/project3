@@ -7,6 +7,7 @@ type Booking {
     user: User!
     createdAt: String!
     updatedAt: String!
+    count: Int
 }
 
 type Job {
@@ -21,6 +22,7 @@ type Job {
   date: String!
   broker: String
   creator: User!
+  bookedJob:Booking
   
 }
 

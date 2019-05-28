@@ -22,14 +22,16 @@ module.exports = {
     }
   },
   bookJob: async (args, req) => {
-    console.log('args :', args);
-    console.log('req :', req);
+    console.log('args :', args.jobId);
+    console.log('req :', req.body.variables.count);
 
     const fetchedEvent = await Event.findOne({ _id: args.jobId });
     const booking = new Booking({
+      count: req.body.variables.count,
       user: req.headers.user,
       event: fetchedEvent
     });
+    console.log('booking :', booking);
     const result = await booking.save();
     return transformBooking(result);
   },

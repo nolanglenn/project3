@@ -4,6 +4,8 @@ const Schema = mongoose.Schema;
 
 const bookingSchema = new Schema(
   {
+    count: Number,
+
     job: {
       type: Schema.Types.ObjectId,
       ref: 'Job'

@@ -74,6 +74,8 @@ class Page2 extends Component {
     const { user } = this.props.auth;
     let filteredJobs = this.state.jobs;
 
+    console.log(filteredJobs);
+
     if (!this.state.jobs) {
       return <p>Loading...</p>;
     }
@@ -98,19 +100,19 @@ class Page2 extends Component {
           <div className="row">
             <div className="col s12 center-align">
               <h4>
-                <b>Available Jobs:</b>
-                <hr style={{ width: '80%' }} />
+                <b style={{fontSize: '55px'}}>Available Jobs</b>
+                <hr style={{ width: '100%' }} />
               </h4>
 
             </div>
 
-            <div className="input-field col s3 offset-s8">
+            <div className="input-field col s12 m3 offset-m9">
               <select
                 onChange={this.handleFilterChange}
                 value={this.state.filterValue} style={{ fontSize: '1.75rem' }}>
                 <option value="">Filter by...</option>
                 <option value="Open House">Open House</option>
-                <option value="Showings">Showings</option>
+                <option value="Showing">Showings</option>
                 <option value="Title Work">Office/Paperwork</option>
                 <option value="Other">Other</option>
               </select>
@@ -122,32 +124,33 @@ class Page2 extends Component {
               <List>
                 {filteredJobs.map(jobs => (
                   <ListItem key={jobs._id}>
-                    <div className="row list-item">
-                      <div className="col-8 col-md-6" style={{ display: 'inline-block', paddingBottom: '15px' }}>
-                        <div className="col">
-                          <h4>
-                            Type:
-                          <p>{jobs.jobType}</p>
-                          </h4>
+                    <div className="row">
+                      <div className='row' style={{paddingBottom: '15px' }}>
+                        <div className='col s12 m8'>
+                          <div style={{textAlign: 'left', margin: '5px 0 5px 0'}} className="col s12">
+                            <h5 style={{fontSize: '18px'}}>
+                            <p style={{lineHeight: '28px',fontSize: '30px', color: 'black', margin: '5px 0 0 0'}}><b>{jobs.title}</b></p>
+                            </h5>
+                          </div>
+                          <div style={{textAlign: 'left', margin: '0'}} className="col s12">
+                            <h5 style={{fontSize: '15px'}}>
+                              Job Type
+                            <p style={{fontSize: '20px', color: 'black', margin: '5px 0 0 0'}}><i><b>{jobs.jobType}</b></i></p>
+                            </h5>
+                          </div>
+                          <div style={{textAlign: 'left', margin: '5px 0 5px 0'}} className="col s12">
+                            <h5 style={{fontSize: '15px'}}>
+                              Job Date
+                            <p  style={{fontSize: '20px', color: 'black', margin: '5px 0 0 0'}}><i><b>{jobs.date}</b></i></p>
+                            </h5>
+                          </div>
                         </div>
-                        <div className="col">
-                          <h4>
-                            Title:
-                          <p>{jobs.title} </p>
-                          </h4>
-                        </div>
-                        <div className="col">
-                          <h4>
-                            Date:
-                          <p>{jobs.date} </p>
-                          </h4>
-                        </div>
-                        <div className="col">
+                        <div style={{textAlign: 'center', margin: '15px 0 5px 0'}} className="col s12 m4">
                           {this.props.auth.user.id === jobs.creator._id ? (
                             <React.Fragment>
-                              <p>You're the owner of this job</p>
+                              <p style={{ fontSize: '15px', color: 'black'}}>You're the owner of this job</p>
                               <Link
-                                className="btn"
+                                className="btn deep-purple"
                                 to={{
                                   pathname: '/page3',
                                   search: '?name=' + jobs._id
@@ -159,7 +162,7 @@ class Page2 extends Component {
                           ) : (
                               <React.Fragment>
                                 <Link
-                                  className="btn"
+                                  className="btn deep-purple"
                                   to={{
                                     pathname: '/page3',
                                     search: '?name=' + jobs._id
@@ -172,6 +175,7 @@ class Page2 extends Component {
                             )}
                         </div>
                       </div>
+                      <hr />
                     </div>
                   </ListItem>
                 ))}

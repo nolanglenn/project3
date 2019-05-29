@@ -345,20 +345,23 @@ class Profile extends Component {
                       <ListItem key={user.id}>
                         <div className="row">
                           <div className="col-6 col-md-4">
-                            <a href={jobs.id} target="_blank">
-                              <strong>{jobs.title}</strong>
-                            </a>
-
-                            <Link
-                              className="btn"
-                              to={{
-                                pathname: '/page3',
-                                search: '?name=' + jobs._id
-                              }}
-                              className="btn"
-                            >
-                              View Details
-                            </Link>
+                            <div className='col s6'>
+                              <a href={jobs.id} target="_blank">
+                                <strong>{jobs.title}</strong>
+                              </a>
+                            </div>
+                            <div className='col s6'>
+                              <Link
+                                className="btn deep-purple"
+                                to={{
+                                  pathname: '/page3',
+                                  search: '?name=' + jobs._id
+                                }}
+                                className="btn"
+                              >
+                                View Details
+                              </Link>
+                            </div>
                           </div>
                         </div>
                       </ListItem>

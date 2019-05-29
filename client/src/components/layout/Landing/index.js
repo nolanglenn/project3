@@ -127,6 +127,32 @@ class Landing extends Component {
           </div>
           </Modal>
       </div>
+      <div className="row">
+        <div style={{ margin: '100px auto 0 auto', borderRadius: '6px'}} className="container">
+          <div className="col s12 m2 l2"></div>
+          <div className="col s12 m3 l3">
+            <div className="card white darken-1">
+              <div className="card-content black-text">
+                <span className="card-title black-text">Work Together</span>
+                <p>I am a very simple card. I am good at containing small bits of information.
+                I am convenient because I require little markup to use effectively.</p>
+              </div>
+            </div>
+          </div>
+          <div className="col s12 m2 l2"></div>
+          <div className="col s12 m3 l3">
+            <div className="card white darken-1">
+              <div className="card-content black-text">
+                <span className="card-title black-text">Card Title</span>
+                <p>I am a very simple card. I am good at containing small bits of information.
+                I am convenient because I require little markup to use effectively.</p>
+              </div>
+            </div>
+          </div>
+          <div className="col s12 m2 l2"></div>
+        </div>
+      </div>
+      <div className="center-align">Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
       </div>
     )
   }

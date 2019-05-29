@@ -50,7 +50,6 @@ class Page2 extends Component {
       })
       .then(resData => {
         const events = resData.data.jobs;
-        console.log('These are all available jobs: ', events);
         this.setState({
           jobs: [...events]
         });
@@ -73,8 +72,6 @@ class Page2 extends Component {
   render() {
     const { user } = this.props.auth;
     let filteredJobs = this.state.jobs;
-
-    console.log(filteredJobs);
 
     if (!this.state.jobs) {
       return <p>Loading...</p>;

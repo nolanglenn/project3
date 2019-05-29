@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Modal from 'react-awesome-modal';
 import './style.css';
+import hands from './hand-shake.png';
+import money from './dollar.png';
 
 class Landing extends Component {
 
@@ -130,22 +132,29 @@ class Landing extends Component {
       <div className="row">
         <div style={{ margin: '100px auto 0 auto', borderRadius: '6px'}} className="container">
           <div className="col s12 m2 l2"></div>
-          <div className="col s12 m3 l3">
+          <div className="col s12 m12 l3">
             <div className="card white darken-1">
               <div className="card-content black-text">
-                <span className="card-title black-text">Work Together</span>
-                <p>I am a very simple card. I am good at containing small bits of information.
-                I am convenient because I require little markup to use effectively.</p>
+                <img src={hands} className="hand-shake"></img>
+                <span className="card-title black-text center-align"><b>Work Together</b></span><br></br>
+                <p>Clients deserve around-the-clock service, but as agents, it's not always convinient.
+                  Let your peers step in and help you help your clients. Whether it's an open house, a 
+                  single showing, or anything in between, Task Trader makes it easy to post and find jobs
+                  in your brokerage.
+                </p>
               </div>
             </div>
           </div>
           <div className="col s12 m2 l2"></div>
-          <div className="col s12 m3 l3">
+          <div className="col s12 m12 l3">
             <div className="card white darken-1">
               <div className="card-content black-text">
-                <span className="card-title black-text">Card Title</span>
-                <p>I am a very simple card. I am good at containing small bits of information.
-                I am convenient because I require little markup to use effectively.</p>
+                <img src={money} className="money"></img>
+                <span className="card-title black-text center-align"><b>Earn Together</b></span><br></br>
+                <p>You can help out your fellow agents AND earn money with Task Trader. Simply accept a job
+                  and complete it to start picking up some extra hours! Our service allows you to keep track of your
+                  current and upcoming jobs with a chat feature. Browse jobs and get started today!
+                </p>
               </div>
             </div>
           </div>

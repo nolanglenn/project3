@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Modal from 'react-awesome-modal';
 import './style.css';
+import hands from './hand-shake.png';
+import money from './dollar.png';
 
 class Landing extends Component {
 
@@ -127,6 +129,39 @@ class Landing extends Component {
           </div>
           </Modal>
       </div>
+      <div className="row">
+        <div style={{ margin: '100px auto 0 auto', borderRadius: '6px'}} className="container">
+          <div className="col s12 m2 l2"></div>
+          <div className="col s12 m12 l3">
+            <div className="card white darken-1">
+              <div className="card-content black-text">
+                <img src={hands} className="hand-shake"></img>
+                <span className="card-title black-text center-align"><b>Work Together</b></span><br></br>
+                <p>Clients deserve around-the-clock service, but as agents, it's not always convinient.
+                  Let your peers step in and help you help your clients. Whether it's an open house, a 
+                  single showing, or anything in between, Task Trader makes it easy to post and find jobs
+                  in your brokerage.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="col s12 m2 l2"></div>
+          <div className="col s12 m12 l3">
+            <div className="card white darken-1">
+              <div className="card-content black-text">
+                <img src={money} className="money"></img>
+                <span className="card-title black-text center-align"><b>Earn Together</b></span><br></br>
+                <p>You can help out your fellow agents AND earn money with Task Trader. Simply accept a job
+                  and complete it to start picking up some extra hours! Our service allows you to keep track of your
+                  current and upcoming jobs with a chat feature. Browse jobs and get started today!
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="col s12 m2 l2"></div>
+        </div>
+      </div>
+      <div className="center-align">Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
       </div>
     )
   }

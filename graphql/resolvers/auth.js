@@ -62,14 +62,9 @@ module.exports = {
 
     try {
       const user = await User.findOneAndUpdate(
-        req.headers.user,
+        { _id: req.headers.user },
         req.body.variables,
-        { upsert: true, new: true },
-        (err, doc) => {
-          console.log('Document: ', doc);
-          console.log('err: ', err);
-          return doc;
-        }
+        { upsert: true, new: true }
       );
       return user;
     } catch (err) {

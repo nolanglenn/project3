@@ -7,9 +7,7 @@ import Navbar from '../../navbar/Navbar';
 import './style.css';
 
 class Dashboard extends Component {
-  componentDidMount() {
-    console.log('Mounted');
-  }
+  componentDidMount() {}
   render() {
     const { user } = this.props.auth;
 

@@ -133,7 +133,6 @@ class Button extends React.Component {
     this.setState({ UserButtonClass: 'waves-effect btn-small blue' });
   };
   bookJob = jobId => {
-    console.log(jobId);
     const requestBody = {
       query: `
           mutation bookJob($id: ID!) {
@@ -153,7 +152,6 @@ class Button extends React.Component {
         count: this.state.clickCount
       }
     };
-    console.log({ ...requestBody });
 
     fetch('/graphql', {
       method: 'POST',
@@ -170,10 +168,7 @@ class Button extends React.Component {
         return res.json();
       })
       .then(resData => {
-        console.log(resData.data.bookJob.count);
-
         const booked = resData.data.bookJob;
-        console.log(booked.count);
         this.setState({ booked: booked, clickCount: booked.count });
         this.statusChange();
       })
@@ -208,7 +203,12 @@ class Button extends React.Component {
         >
           {this.state.status}
         </button>
-        <div>{(this.state.user === this.state.originUser && this.state.clickCount < 1) ? <DeleteJob /> : null }</div>
+        <div>
+          {this.state.user === this.state.originUser &&
+          this.state.clickCount < 1 ? (
+            <DeleteJob />
+          ) : null}
+        </div>
       </div>
     );
   }

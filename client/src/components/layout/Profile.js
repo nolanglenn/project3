@@ -51,7 +51,6 @@ class Profile extends Component {
           }
         `
     };
-    console.log('REBODY: ', requestBody);
 
     fetch('/graphql', {
       method: 'POST',
@@ -98,7 +97,6 @@ class Profile extends Component {
         userId: this.props.auth.user.id
       }
     };
-    console.log('REBODY: ', requestBody);
 
     fetch('/graphql', {
       method: 'POST',
@@ -144,7 +142,6 @@ class Profile extends Component {
         userId: this.props.auth.user.id
       }
     };
-    console.log('REBODY: ', requestBody);
 
     fetch('/graphql', {
       method: 'POST',
@@ -161,8 +158,6 @@ class Profile extends Component {
         return res.json();
       })
       .then(resData => {
-        console.log(resData);
-
         const userProfile = resData.data.userProfile;
         this.setState({ ...userProfile });
       })
@@ -212,7 +207,6 @@ class Profile extends Component {
   /* submission functon here is where it will go to the database */
 
   onSubmit = e => {
-    console.log('hello');
     e.preventDefault();
     /* Here is where the information would be sent to the database */
 
@@ -221,8 +215,6 @@ class Profile extends Component {
       email: this.state.email,
       title: this.state.title
     };
-
-    console.log(userInfo);
 
     const requestBody = {
       query: `
@@ -237,7 +229,6 @@ class Profile extends Component {
         `,
       variables: { ...userInfo }
     };
-    console.log('REBODY: ', requestBody);
 
     fetch('/graphql', {
       method: 'POST',
@@ -254,8 +245,6 @@ class Profile extends Component {
         return res.json();
       })
       .then(resData => {
-        console.log(resData);
-
         const userProfile = resData.data.updateUser;
         this.setState({ ...userProfile });
       })
@@ -345,12 +334,12 @@ class Profile extends Component {
                       <ListItem key={user.id}>
                         <div className="row">
                           <div className="col-6 col-md-4">
-                            <div className='col s6'>
+                            <div className="col s6">
                               <a href={jobs.id} target="_blank">
                                 <strong>{jobs.title}</strong>
                               </a>
                             </div>
-                            <div className='col s6'>
+                            <div className="col s6">
                               <Link
                                 className="btn deep-purple"
                                 to={{

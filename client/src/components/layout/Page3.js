@@ -147,7 +147,9 @@ class Page3 extends Component {
               <h5 style={{ display: 'block' }}>
                 <b>Date of Job</b>
               </h5>
-              <h6>{new Date(+this.state.currentJob.date).toString()}</h6>
+              <h6>
+                {new Date(+this.state.currentJob.date).toLocaleDateString()}
+              </h6>
             </div>
             <div className="col m6 s12">
               <h5>

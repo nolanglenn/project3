@@ -32,8 +32,6 @@ class Page1 extends Component {
     const value = target.value;
     const name = target.name;
 
-    console.log(`Input name ${name}. Input value ${value}`);
-
     this.setState({ newPost: { ...this.state.newPost, [name]: value } });
   };
 
@@ -88,20 +86,17 @@ class Page1 extends Component {
     }
     // Enable or disable logs. Its optional.
     Geocode.enableDebug();
-    //  console.log(this.props.newPost.address);
     Geocode.fromAddress(this.state.newPost.address)
       .then(
         response => {
           const { lat, lng } = response.results[0].geometry.location;
 
           // geocode.push(lat, lng);
-          console.log(lat);
           this.setState({
             newPost: { ...this.state.newPost, geocodeLat: lat, geocodeLng: lng }
           });
 
           const post = this.state.newPost;
-          console.log(post);
         },
         error => {
           console.error(error);
@@ -109,7 +104,6 @@ class Page1 extends Component {
       )
       .then(() => {
         const post = this.state.newPost;
-        console.log(post);
         const requestBody = {
           query: `
           mutation CreateJob(
@@ -161,7 +155,6 @@ class Page1 extends Component {
             creator: this.props.auth.user.id
           }
         };
-        console.log(requestBody);
         fetch('/graphql', {
           method: 'POST',
           body: JSON.stringify(requestBody),
@@ -176,9 +169,10 @@ class Page1 extends Component {
             return res.json();
           })
           .then(res => {
-            debugger
-            console.log("input response", res)
-            return this.props.history.push('/page3/?name=' + res.data.createJob._id);
+            debugger;
+            return this.props.history.push(
+              '/page3/?name=' + res.data.createJob._id
+            );
           })
           .catch(err => {
             console.log(err);

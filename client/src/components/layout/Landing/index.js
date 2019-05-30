@@ -118,7 +118,7 @@ class Landing extends Component {
                     borderRadius: "3px",
                     letterSpacing: "1.5px"
                   }}
-                  className="btn btn-medium waves-effect waves-light hoverable deep-purple darken-4"
+                  className="btn btn-large waves-effect waves-light hoverable deep-purple darken-4"
                   href="/Register"
                 >
                   Get Started
@@ -153,6 +153,9 @@ class Landing extends Component {
                 <span className="card-title black-text center-align"><b>Brokerage Specific</b></span><br></br>
                 <p>To use Task<b>Trader</b> you will need to make sure your brokerage is registered with us! If you are, great! If you would like to sign up feel free to contact us or share this site with a brokerage manager.
                 </p>
+                <div style={{textAlign: 'center'}}>
+                  <button style={{margin: '25px auto 0 auto'}} className='btn deep-purple darken-2'>Contact Us!</button>
+                </div>
               </div>
             </div>
           </div>
@@ -170,7 +173,7 @@ class Landing extends Component {
           </div>
         </div>
       </div>
-        <div style={{fontSize: '10px', margin: '80px auto 0 auto'}} className="center-align">Icons made by <a style={{color: 'black'}} href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a style={{color: 'black'}} href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a style={{color: 'black'}} href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+        <div style={{fontSize: '10px', margin: '110px auto 0 auto'}} className="center-align">Icons made by <a style={{color: 'black'}} href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a style={{color: 'black'}} href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a style={{color: 'black'}} href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
       </div>
     )
   }

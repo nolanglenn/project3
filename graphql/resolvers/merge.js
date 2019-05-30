@@ -29,6 +29,7 @@ const events = async eventIds => {
 };
 
 const singleEvent = async eventId => {
+  console.log('eventId', eventId);
   try {
     const event = await eventLoader.load(eventId.toString());
     console.log('event :', event);
@@ -69,7 +70,7 @@ const transformBooking = booking => {
     ...booking._doc,
     _id: booking.id,
     user: user.bind(this, booking._doc.user),
-    job: singleEvent.bind(this, booking._doc.event),
+    event: singleEvent.bind(this, booking._doc.event),
     createdAt: dateToString(booking._doc.createdAt),
     updatedAt: dateToString(booking._doc.updatedAt)
   };

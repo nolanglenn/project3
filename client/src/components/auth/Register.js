@@ -53,7 +53,7 @@ class Register extends Component {
         <div style={{ marginTop: '10rem' }} className="row">
           <div className="col s8 offset-s2">
             <h1>
-              Open<b>House</b>
+              Task<b>Trader</b>
             </h1>
             <Link to="/" className="btn-flat waves-effect">
               <i className="material-icons left">keyboard_backspace</i> Back to

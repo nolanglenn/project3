@@ -28,7 +28,7 @@ class Landing extends Component {
   
   render() {
     return (
-      <div className='landing'>
+      <div style={{overflow: 'scroll'}} className='landing'>
       <div id='parent' style={{ backgroundColor: 'rgba(255, 255, 255, 0.960)', margin: '125px auto 0 auto', borderRadius: '6px'}} className="container valign-wrapper">
         <div id='learnmore'><a value="Open" onClick={() => this.openModal()}>Learn More</a></div>
         <div className="row">
@@ -130,7 +130,7 @@ class Landing extends Component {
           </Modal>
       </div>
       <div className="row">
-        <div style={{ margin: '50px auto 0 auto', borderRadius: '6px'}} className="container">
+        <div id='info' style={{ borderRadius: '6px'}} className="container">
           <div className="col s12 m12 l4">
             <div style={{maxHeight: '300px', overflowY: 'scroll', borderRadius: '6px', backgroundColor: 'rgba(255, 255, 255, 0.900)'}} className="card darken-1">
               <div className="card-content black-text">
@@ -158,7 +158,7 @@ class Landing extends Component {
           </div>
           <div className="col s12 m12 l4">
             <div style={{borderRadius: '6px', backgroundColor: 'rgba(255, 255, 255, 0.900)'}} className="card darken-1">
-              <div style={{maxHeight: '300px', overflowY: 'scroll'}}className="card-content black-text">
+              <div style={{maxHeight: '300px', overflowY: 'scroll'}} className="card-content black-text">
                 <img src={money} className="money"></img>
                 <span style={{margin: '19px auto 0 auto'}} className="card-title black-text center-align"><b>Earn Together</b></span><br></br>
                 <p>You can help out your fellow agents AND earn money with Task Trader. Simply accept a job

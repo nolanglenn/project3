@@ -21,19 +21,16 @@ class Page2 extends Component {
 
   componentDidMount() {
     const requestBody = {
-      query: `
-          query {
-            jobs {
-              _id
-              title
-              jobType
-              date
+      query: `{jobs {
+              _id,
+              title,
+              jobType,
+              date,
               creator {
                 _id 
               }
             }
-          }
-        `
+          }`
     };
     fetch('/graphql', {
       method: 'POST',

@@ -6,7 +6,7 @@ const bookingSchema = new Schema(
   {
     count: Number,
 
-    job: {
+    event: {
       type: Schema.Types.ObjectId,
       ref: 'Job'
     },

@@ -5,6 +5,8 @@ import { logoutUser } from '../../actions/authActions';
 //import { Link } from "react-router-dom";
 import Navbar from '../navbar/Navbar';
 import Geocode from 'react-geocode';
+import {getGeoCodeKey} from '../../actions/mapActions';
+
 
 class Page1 extends Component {
   constructor(props) {
@@ -21,12 +23,18 @@ class Page1 extends Component {
         geocodeLng: '',
         date: '',
         notes: ''
-      }
+      },
+      geoCodeKey: null
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    getGeoCodeKey().then((key) => {
+      this.setState({geoCodeKey: key});
+    });
+  }
   handleInputChange = e => {
     const target = e.target;
     const value = target.value;
@@ -60,7 +68,7 @@ class Page1 extends Component {
       return false;
     }
 
-    Geocode.setApiKey('AIzaSyAfJNJ2bbBofLbgi4T55vXkNGLSA7LsPlM');
+    Geocode.setApiKey(this.state.geoCodeKey);
 
     if (
       this.state.newPost.title === '' ||
@@ -169,7 +177,6 @@ class Page1 extends Component {
             return res.json();
           })
           .then(res => {
-            debugger;
             return this.props.history.push(
               '/page3/?name=' + res.data.createJob._id
             );

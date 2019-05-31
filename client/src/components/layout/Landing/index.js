@@ -78,20 +78,20 @@ class Landing extends Component {
                     <h1>Why Task<b>Trader</b>?</h1>
                   </div>
                   <div className='col s12'>
-                    <p>Task<b>Trader</b> is designed to give those in the Real Estate industry gain more flexability in life.
-                    Whether you have been in the industry for many years or just starting out, we are here to help. 
+                    <p>Task<b>Trader</b> is designed to help those in the Real Estate industry gain more work-life flexibility.
+                    Whether you have been in the industry for many years or are just starting out, we are here to help. 
                     <br></br><br></br>
-                    Here at Task<b>Trader</b> you can use the service in two ways:
+                    You can use Task<b>Trader</b> in two ways:
                     <br />
-                    <b>One</b> you can be a <b>Job Poster</b>.
+                    <b>One:</b> You can be a <b>Job Poster</b>.
                     <br />
-                    <b>Two</b> You can be a <b>Job Seeker</b>.</p>
+                    <b>Two:</b> You can be a <b>Job Seeker</b>.</p>
                   </div>
                 </div>
                 <div className='row'>
                   <div className='col s12 m6'>
                     <p><b>Job Poster</b><br />
-                    Currnet Industry Trend :<br />
+                    Current Industry Trend:<br />
                     Client requires more time from agent. Off hours, off days, or regional transitions<br /><br />
                     Agent: <br />
                     Time flexibility for life events, family time, or any other conflicting plans.<br />
@@ -107,7 +107,7 @@ class Landing extends Component {
                     Earn potential leads.<br />
                     Desire to scale up, but limited bandwidth.<br />
                     New to the industry and need more face time with clients to grow interpersonal skills<br />
-                    Earn the dollar.</p>
+                    Supplement your income.</p>
                   </div>
                 </div>
                 <div style={{textAlign: 'center'}}>

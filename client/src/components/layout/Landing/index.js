@@ -91,23 +91,21 @@ class Landing extends Component {
                 <div className='row'>
                   <div className='col s12 m6'>
                     <p><b>Job Poster</b><br />
-                    Current Industry Trend:<br />
-                    Client requires more time from agent. Off hours, off days, or regional transitions<br /><br />
-                    Agent: <br />
-                    Time flexibility for life events, family time, or any other conflicting plans.<br />
-                    Seasonal demands call for more time than one can provide.<br />
-                    Desire to scale up, but limited bandwidth.<br />
-                    Can only request work from within brokerage.</p>
+                    Leverage Your Time!<br /><br />
+                    Your clients need you around the clock, making work-life balance tough to find.<br />
+                    Create time flexibility for life events, family time, or any other conflicting plans.<br />
+                    Seasonal demands sometimes require more time than one can provide.<br />
+                    Find the ability to scale up, even with limited bandwidth.<br />
+                    Get help from other agents within your current brokerage.</p>
                   </div>
                   <div className='col s12 m6'>
                     <p><b>Job Seeker</b><br />
-                    Leverage Your Time!<br /><br />
-                    Pick up more work during seasonal demands or slowdown.<br />
-                    Desire to grow within the industry but limited bandwidth.<br />
-                    Earn potential leads.<br />
-                    Desire to scale up, but limited bandwidth.<br />
-                    New to the industry and need more face time with clients to grow interpersonal skills<br />
-                    Supplement your income.</p>
+                    Earn more money on your own schedule!<br /><br />
+                    Other agents need help to ensure their clients receive around-the-clock service.<br />
+                    Pick up more work during seasonal demands or slow-downs.<br />
+                    Create new connections and build raport with other agents.<br />
+                    Grab new opportunities to scale up your business.<br />
+                    Supplement your current income, as often as you'd like!</p>
                   </div>
                 </div>
                 <div style={{textAlign: 'center'}}>
@@ -145,7 +143,7 @@ class Landing extends Component {
             </div>
           </div>
           <div className="col s12 m12 l4">
-            <div style={{borderRadius: '6px', backgroundColor: 'rgba(255, 255, 255, 0.900)'}} className="card darken-1">
+            <div style={{borderRadius: '6px', overflowY: 'scroll', backgroundColor: 'rgba(255, 255, 255, 0.900)'}} className="card darken-1">
               <div style={{maxHeight: '300px', overflowY: 'scroll'}} className="card-content black-text">
                <div style={{fontSize: '30px', textAlign: 'center'}}>
                <i class="material-icons large">home</i>
@@ -160,7 +158,7 @@ class Landing extends Component {
             </div>
           </div>
           <div className="col s12 m12 l4">
-            <div style={{borderRadius: '6px', backgroundColor: 'rgba(255, 255, 255, 0.900)'}} className="card darken-1">
+            <div style={{borderRadius: '6px', overflowY: 'scroll', backgroundColor: 'rgba(255, 255, 255, 0.900)'}} className="card darken-1">
               <div style={{maxHeight: '300px', overflowY: 'scroll'}} className="card-content black-text">
                 <img src={money} className="money"></img>
                 <span style={{margin: '19px auto 0 auto'}} className="card-title black-text center-align"><b>Earn Together</b></span><br></br>

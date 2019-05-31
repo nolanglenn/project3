@@ -12,7 +12,10 @@ module.exports = {
       if (!bookings) {
         return null;
       }
+      console.log('Bookings', bookings);
       return bookings.map(booking => {
+        // console.log('THE BOOKINGS: ', booking._doc);
+
         return transformBooking(booking);
       });
     } catch (err) {
@@ -20,7 +23,11 @@ module.exports = {
     }
   },
   bookJob: async (args, req) => {
+    console.log('args', args);
+    console.log('args.jobId', args.jobId);
     const fetchedEvent = await Event.findOne({ _id: args.jobId });
+    console.log('The FecthecEvent: ', fetchedEvent);
+
     const booking = new Booking({
       count: req.body.variables.count,
       user: req.headers.user,

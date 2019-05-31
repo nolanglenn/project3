@@ -28,7 +28,7 @@ class Landing extends Component {
   
   render() {
     return (
-      <div className='landing'>
+      <div style={{overflow: 'scroll'}} className='landing'>
       <div id='parent' style={{ backgroundColor: 'rgba(255, 255, 255, 0.960)', margin: '125px auto 0 auto', borderRadius: '6px'}} className="container valign-wrapper">
         <div id='learnmore'><a value="Open" onClick={() => this.openModal()}>Learn More</a></div>
         <div className="row">
@@ -118,7 +118,7 @@ class Landing extends Component {
                     borderRadius: "3px",
                     letterSpacing: "1.5px"
                   }}
-                  className="btn btn-medium waves-effect waves-light hoverable deep-purple darken-4"
+                  className="btn btn-large waves-effect waves-light hoverable deep-purple darken-4"
                   href="/Register"
                 >
                   Get Started
@@ -130,13 +130,12 @@ class Landing extends Component {
           </Modal>
       </div>
       <div className="row">
-        <div style={{ margin: '100px auto 0 auto', borderRadius: '6px'}} className="container">
-          <div className="col s12 m2 l2"></div>
-          <div className="col s12 m12 l3">
-            <div className="card white darken-1">
+        <div id='info' style={{ borderRadius: '6px'}} className="container">
+          <div className="col s12 m12 l4">
+            <div style={{maxHeight: '300px', overflowY: 'scroll', borderRadius: '6px', backgroundColor: 'rgba(255, 255, 255, 0.900)'}} className="card darken-1">
               <div className="card-content black-text">
                 <img src={hands} className="hand-shake"></img>
-                <span className="card-title black-text center-align"><b>Work Together</b></span><br></br>
+                <span style={{margin: '19px auto 0 auto'}} className="card-title black-text center-align"><b>Work Together</b></span><br></br>
                 <p>Clients deserve around-the-clock service, but as agents, it's not always convinient.
                   Let your peers step in and help you help your clients. Whether it's an open house, a 
                   single showing, or anything in between, Task Trader makes it easy to post and find jobs
@@ -145,12 +144,26 @@ class Landing extends Component {
               </div>
             </div>
           </div>
-          <div className="col s12 m2 l2"></div>
-          <div className="col s12 m12 l3">
-            <div className="card white darken-1">
-              <div className="card-content black-text">
+          <div className="col s12 m12 l4">
+            <div style={{borderRadius: '6px', backgroundColor: 'rgba(255, 255, 255, 0.900)'}} className="card darken-1">
+              <div style={{maxHeight: '300px', overflowY: 'scroll'}} className="card-content black-text">
+               <div style={{fontSize: '30px', textAlign: 'center'}}>
+               <i class="material-icons large">home</i>
+               </div>
+                <span className="card-title black-text center-align"><b>Brokerage Specific</b></span><br></br>
+                <p>To use Task<b>Trader</b> you will need to make sure your brokerage is registered with us! If you are, great! If you would like to sign up feel free to contact us or share this site with a brokerage manager.
+                </p>
+                <div style={{textAlign: 'center'}}>
+                  <button style={{margin: '25px auto 0 auto'}} className='btn deep-purple darken-2'>Contact Us!</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col s12 m12 l4">
+            <div style={{borderRadius: '6px', backgroundColor: 'rgba(255, 255, 255, 0.900)'}} className="card darken-1">
+              <div style={{maxHeight: '300px', overflowY: 'scroll'}} className="card-content black-text">
                 <img src={money} className="money"></img>
-                <span className="card-title black-text center-align"><b>Earn Together</b></span><br></br>
+                <span style={{margin: '19px auto 0 auto'}} className="card-title black-text center-align"><b>Earn Together</b></span><br></br>
                 <p>You can help out your fellow agents AND earn money with Task Trader. Simply accept a job
                   and complete it to start picking up some extra hours! Our service allows you to keep track of your
                   current and upcoming jobs with a chat feature. Browse jobs and get started today!
@@ -158,10 +171,9 @@ class Landing extends Component {
               </div>
             </div>
           </div>
-          <div className="col s12 m2 l2"></div>
         </div>
       </div>
-      <div className="center-align">Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+        <div style={{fontSize: '10px', margin: '110px auto 0 auto'}} className="center-align">Icons made by <a style={{color: 'black'}} href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a style={{color: 'black'}} href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a style={{color: 'black'}} href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
       </div>
     )
   }

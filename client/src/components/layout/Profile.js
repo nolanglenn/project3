@@ -31,24 +31,25 @@ class Profile extends Component {
   componentDidMount() {
     this.userProfile();
     this.fetchJobs();
+    this.fetchBookings();
   }
 
   /*Booking fetch*/
   fetchBookings = () => {
     const requestBody = {
       query: `
-          query {
-            bookings {
-              _id
-             createdAt
-             job {
-               _id
-               title
-               date
-               
-             }
-            }
-          }
+      query {
+        bookings {
+          _id
+         createdAt
+         event {
+           _id
+           title
+           date
+          
+         }
+        }
+      }
         `
     };
 
@@ -68,6 +69,8 @@ class Profile extends Component {
       })
       .then(resData => {
         const bookings = resData.data.bookings;
+        console.log(bookings);
+
         this.setState({ bookings: bookings });
       })
       .catch(err => {
@@ -331,7 +334,7 @@ class Profile extends Component {
                   </h5>
                   <List>
                     {this.state.jobs.map(jobs => (
-                      <ListItem key={user.id}>
+                      <ListItem key={jobs.id}>
                         <div className="row">
                           <div className="col-6 col-md-4">
                             <div className="col s6">
@@ -366,19 +369,29 @@ class Profile extends Component {
                     <b>Jobs You've Taken</b>
                   </h5>
                   <List>
-                    {/* {this.state.job.map(job => (
-                    <ListItem key={user.id}>
-                      <div className="row">
-                        <div className="col-6 col-md-4">
-                          <a href={job.id} target="_blank">
-                            <strong>
-                              {job.title}
-                            </strong>
-                          </a>
-                          <button>Detail</button>
+                    {this.state.bookings.map(job => (
+                      <ListItem key={job.id}>
+                        <div className="row">
+                          <div className="col-6 col-md-4">
+                            <a href={job.id} target="_blank">
+                              <strong>{job.event.title}</strong>
+                            </a>
+                            <div className="col s6">
+                              <Link
+                                className="btn deep-purple"
+                                to={{
+                                  pathname: '/page3',
+                                  search: '?name=' + job.event._id
+                                }}
+                                className="btn"
+                              >
+                                View Details
+                              </Link>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </ListItem>))} */}
+                      </ListItem>
+                    ))}
                   </List>
                 </span>
               </div>

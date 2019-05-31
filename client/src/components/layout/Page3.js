@@ -178,10 +178,12 @@ class Page3 extends Component {
               <h6>{this.state.currentJob.notes}</h6>
             </div>
             <div className="col s12 m6 contentSections">
-             
-              <h5>
-                <b>Map:</b>
+            <h5>
+              <b>Location:</b>
+              <p>{this.state.currentJob.address}</p>
               </h5>
+              <br />
+          
               <MyMapComponent
                 isMarkerShown
                 googleMapURL={this.state.mapURL}
@@ -191,8 +193,8 @@ class Page3 extends Component {
                 lat={this.state.currentJob.geocodeLat}
                 lng={this.state.currentJob.geocodeLng}
               />
+           
             </div>
-            <h5>Location of Job: {this.state.currentJob.address}</h5>
             <div
               style={{ textAlign: 'center', margin: '45px auto 0 auto' }}
               className="col s12"

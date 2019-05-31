@@ -9,6 +9,8 @@ require('dotenv').config(); // For Heroku deployment
 const graphqlHttp = require('express-graphql');
 const graphQlSchema = require('./graphql/schema/index');
 const graphQlResolvers = require('./graphql/resolvers/index');
+const axios = require('axios');
+
 // Bodyparser middleware
 app.use(
   bodyParser.urlencoded({
@@ -48,6 +50,17 @@ app.use(passport.initialize());
 require('./config/passport')(passport);
 // Routes
 app.use('/api/users', users);
+
+
+//TODO - KATIE: write api call here to process info from google geocode, then send back lat & lng
+// app.use('/api/geocode', geoaddress);
+//TODO - KATIE: write api call here to process info from google maps, then send back
+app.get('/api/maps', (req, res) => {
+  return res.json({mapURL: process.env.GOOGLE_MAPS_URL, geoCodeKey: process.env.GEO_CODE_KEY})
+  
+});
+
+
 app.use(
   '/graphql',
   graphqlHttp({

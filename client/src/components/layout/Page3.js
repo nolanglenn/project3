@@ -14,6 +14,8 @@ import {
   Marker
 } from 'react-google-maps';
 import { log } from 'util';
+import {getMap} from '../../actions/mapActions';
+
 // eslint-disable-next-line no-restricted-globals
 
 const MyMapComponent = withScriptjs(
@@ -42,7 +44,8 @@ class Page3 extends Component {
         name: this.props.auth.user.name
       },
       errors: '',
-      currentJob: null
+      currentJob: null,
+      mapURL: null
     };
   }
 
@@ -50,7 +53,10 @@ class Page3 extends Component {
     // eslint-disable-next-line no-restricted-globals
     let params = new URLSearchParams(location.search);
     let searchId = params.get('name');
-
+    getMap().then((url) => {
+      this.setState({mapURL: url});
+    });
+    
     const requestBody = {
       query: `
           query 
@@ -105,7 +111,7 @@ class Page3 extends Component {
 
   render() {
     const { user } = this.props.auth;
-    if (!this.state.currentJob) {
+    if (!this.state.currentJob || !this.state.mapURL) {
       return <p>Loading...</p>;
     }
     return (
@@ -172,12 +178,13 @@ class Page3 extends Component {
               <h6>{this.state.currentJob.notes}</h6>
             </div>
             <div className="col s12 m6 contentSections">
+             
               <h5>
-                <b>Map</b>
+                <b>Map:</b>
               </h5>
               <MyMapComponent
                 isMarkerShown
-                googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfJNJ2bbBofLbgi4T55vXkNGLSA7LsPlM&v=3.exp&libraries=geometry,drawing,places"
+                googleMapURL={this.state.mapURL}
                 loadingElement={<div style={{ height: `100%` }} />}
                 containerElement={<div style={{ height: `300px` }} />}
                 mapElement={<div style={{ height: `100%` }} />}
@@ -185,7 +192,7 @@ class Page3 extends Component {
                 lng={this.state.currentJob.geocodeLng}
               />
             </div>
-
+            <h5>Location of Job: {this.state.currentJob.address}</h5>
             <div
               style={{ textAlign: 'center', margin: '45px auto 0 auto' }}
               className="col s12"

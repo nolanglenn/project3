@@ -91,8 +91,8 @@ class Landing extends Component {
                 <div className='row'>
                   <div className='col s12 m6'>
                     <p><b>Job Poster</b><br />
-                    Leverage Your Time!<br />
-                    Your clients need you around the clock, making work-life balance tough to find.<br /><br />
+                    Leverage Your Time!<br /><br />
+                    Your clients need you around the clock, making work-life balance tough to find.<br />
                     Create time flexibility for life events, family time, or any other conflicting plans.<br />
                     Seasonal demands sometimes require more time than one can provide.<br />
                     Find the ability to scale up, even with limited bandwidth.<br />
@@ -100,11 +100,12 @@ class Landing extends Component {
                   </div>
                   <div className='col s12 m6'>
                     <p><b>Job Seeker</b><br />
-                    Earn more when you want!<br /><br />
+                    Earn more money on your own schedule!<br /><br />
+                    Other agents need help to ensure their clients receive around-the-clock service.<br />
                     Pick up more work during seasonal demands or slow-downs.<br />
                     Create new connections and build raport with other agents.<br />
-                    Grab new opportinities to scale up your business.<br />
-                    Supplement your current income.</p>
+                    Grab new opportunities to scale up your business.<br />
+                    Supplement your current income, as often as you'd like!</p>
                   </div>
                 </div>
                 <div style={{textAlign: 'center'}}>

@@ -136,7 +136,7 @@ class Page2 extends Component {
                         <div className="col">
                           <h4>
                             Date:
-                          <p>{jobs.date} </p>
+                          <p> {new Date(jobs.date).toLocaleDateString()}</p>
                           </h4>
                         </div>
                         <div className="col">

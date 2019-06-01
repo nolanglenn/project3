@@ -194,7 +194,7 @@ class Button extends React.Component {
             this.bookJob(this.props.jobId);
           }}
           style={{ margin: '2.5px' }}
-          // onClick={this.statusChange}
+          onClick={this.statusChange}
           value={this.state.status}
           className={
             this.state.user === this.state.originUser

@@ -43,6 +43,7 @@ class Page2 extends Component {
         if (res.status !== 200 && res.status !== 201) {
           throw new Error('Failed!');
         }
+        return res.json();
       })
       .then(resData => {
         const events = resData.data.jobs;

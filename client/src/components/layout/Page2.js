@@ -107,7 +107,7 @@ class Page2 extends Component {
                 value={this.state.filterValue} style={{ fontSize: '1.75rem' }}>
                 <option value="">Filter by...</option>
                 <option value="Open House">Open House</option>
-                <option value="Showings">Showings</option>
+                <option value="Showing">Showings</option>
                 <option value="Title Work">Office/Paperwork</option>
                 <option value="Other">Other</option>
               </select>
@@ -136,7 +136,7 @@ class Page2 extends Component {
                         <div className="col">
                           <h4>
                             Date:
-                          <p>{jobs.date} </p>
+                          <p> {new Date(jobs.date).toLocaleDateString()}</p>
                           </h4>
                         </div>
                         <div className="col">
